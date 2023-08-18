@@ -1,0 +1,24 @@
+a {
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  color: red;
+  text-decoration: none;
+}
+
+li {
+  display: inline;
+  list-style-type: none;
+  margin-left: 5px;
+  margin-right: 5px;
+}

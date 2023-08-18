@@ -3,18 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderNavComponent } from './header-nav/header-nav.component';
+import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AssistantComponent } from './assistant/assistant.component';
+import { NavComponent } from './header/nav/nav.component';
 
 @NgModule({
    declarations: [
       AppComponent,
-      HeaderNavComponent,
+      HeaderComponent,
       DashboardComponent,
-      AssistantComponent
+      AssistantComponent,
+      NavComponent
    ],
    imports: [
       BrowserModule,

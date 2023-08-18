@@ -5,12 +5,13 @@ import { Subscription } from 'rxjs';
 // import { AuthService } from '../auth/auth.service';
 
 @Component({
-   selector: 'app-header-nav',
-   templateUrl: './header-nav.component.html',
-   styleUrls: ['./header-nav.component.css']
+   selector: 'app-header',
+   templateUrl: './header.component.html',
+   styleUrls: ['./header.component.css']
 })
-export class HeaderNavComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
    isAuthenticated = false;
+   showNav = true;
    //   private userSub: Subscription;
 
    constructor(
@@ -18,27 +19,15 @@ export class HeaderNavComponent implements OnInit, OnDestroy {
       //  private authService: AuthService
    ) { }
 
+   toggleNav() {
+      this.showNav = !this.showNav;
+   }
+
    ngOnInit() {
       //  this.userSub = this.authService.user.subscribe(user => {
       //    this.isAuthenticated = !!user;
       //    console.log(!user);
       //    console.log(!!user);
       //  });
-   }
-
-   onSaveData() {
-      //  this.dataStorageService.storeRecipes();
-   }
-
-   onFetchData() {
-      //  this.dataStorageService.fetchRecipes().subscribe();
-   }
-
-   onLogout() {
-      //  this.authService.logout();
-   }
-
-   ngOnDestroy() {
-      //  this.userSub.unsubscribe();
    }
 }

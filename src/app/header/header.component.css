@@ -1,0 +1,56 @@
+.caret {
+  font-size: 5px;
+}
+
+a {
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  color: red;
+  text-decoration: none;
+}
+
+.head-container {
+  display: flex;
+  justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20rem;
+}
+
+.head {
+  /* display: flex; */
+  position: fixed;
+  height: 2rem;
+  margin: auto;
+  text-align: center;
+}
+
+.dropdown {
+  position: fixed;
+  margin-right: 0px;
+}
+
+.navigation {
+  display: flex;
+  margin-top: 2rem;;
+  justify-content: center;
+}
+
+.caret-up {
+  transform: rotate(180deg);
+}
+

@@ -1,0 +1,26 @@
+<div class="head-container">
+   <div class="head">
+      <a class="navbar-brand" routerLink="/">Aegwynn</a>
+   </div>
+</div>
+
+<div class="button-container">
+   <div class="dropdown">
+      <a role="button" (click)="toggleNav()">
+         <!-- <i class="bi bi-caret-down"></i> -->
+
+         <span class="bi bi-caret-up" *ngIf="showNav; else hideNav"></span>
+
+         <ng-template #hideNav>
+            <span class="bi bi-caret-down"></span>
+         </ng-template>
+      </a>
+   </div>
+</div>
+
+<div class="navigation">
+   <div class="nav navbar-nav" *ngIf="showNav">
+      <app-nav></app-nav>
+   </div>
+</div>
+<!-- </div> -->

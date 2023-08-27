@@ -10,14 +10,24 @@ import { AgendaItem } from './agenda-item/agenda-item.model';
 export class AgendaComponent {
   agendaItems: AgendaItem[] = [
     new AgendaItem(
-      new Date('2023-09-01'),
-      'Test Course',
-      'Test Assignment'
+      new Date(2023, 7, 27),
+      'Angular Application',
+      'Replace up arrow with gear icon'
     ),
     new AgendaItem(
-      new Date('2023-09-01'),
-      'Test Course',
-      'Test Assignment'
+      new Date(2023, 7, 27),
+      'Angular Application',
+      'Add up / down arrows to agenda items to allow reordering'
+    ),
+    new AgendaItem(
+      new Date(2023, 7, 27),
+      'Angular Application',
+      'Add ability to delete / mark agenda items complete'
+    ),
+    new AgendaItem(
+      new Date(2023, 7, 27),
+      'Angular Application',
+      'Add \'current\' and \'compelted\' agenda item sections'
     ),
   ];
 }

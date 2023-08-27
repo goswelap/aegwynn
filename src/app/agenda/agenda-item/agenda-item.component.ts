@@ -8,8 +8,8 @@ import { AgendaItem } from './agenda-item.model';
   styleUrls: ['./agenda-item.component.css']
 })
 export class AgendaItemComponent implements OnInit {
-  @Input() agendaItem: AgendaItem;
-  @Input() index: number;
+  @Input() agendaItem!: AgendaItem;
+  @Input() index!: number;
 
   constructor() { }
 

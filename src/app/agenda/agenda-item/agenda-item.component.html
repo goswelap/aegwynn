@@ -1,11 +1,11 @@
-<a
+<!-- <a
   style="cursor: pointer;"
   [routerLink]="[index]"
   routerLinkActive="active"
-  class="list-group-item clearfix">
-  <div class="pull-left">
-    <h4 class="list-group-item-heading">{{ agendaItem.course }}</h4>
-    <p class="list-group-item-text">{{ agendaItem.assignment }}</p>
-    <p class="list-group-item-text">{{ agendaItem.due_date }}</p>
+  class="list-group-item clearfix"> -->
+  <div class="agenda-item">
+    <h4>{{ agendaItem.due_date | date: 'EE MMM d' }}</h4>
+    <p>{{ agendaItem.course }}</p>
+    <p>{{ agendaItem.assignment }}</p>
   </div>
-</a>
+<!-- </a> -->

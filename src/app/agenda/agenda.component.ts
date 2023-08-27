@@ -8,5 +8,16 @@ import { AgendaItem } from './agenda-item/agenda-item.model';
   styleUrls: ['./agenda.component.css']
 })
 export class AgendaComponent {
-  agendaItems: AgendaItem[];
+  agendaItems: AgendaItem[] = [
+    new AgendaItem(
+      new Date('2023-09-01'),
+      'Test Course',
+      'Test Assignment'
+    ),
+    new AgendaItem(
+      new Date('2023-09-01'),
+      'Test Course',
+      'Test Assignment'
+    ),
+  ];
 }

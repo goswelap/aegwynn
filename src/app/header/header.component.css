@@ -1,7 +1,10 @@
 .navbar-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-image: url('../../assets/navbar.jpg');
-  /* background-position: center center; */
-  color: white; /* This will ensure text remains visible */
+  color: white;
+  padding: 10px 20px;
 }
 
 a {
@@ -22,34 +25,14 @@ a:hover {
   text-decoration: none;
 }
 
-.head-container {
-  display: flex;
-  justify-content: center;
-}
-
 .button-container {
   display: flex;
-  justify-content: flex-end;
-  margin-right: 20rem;
-}
-
-.head {
-  /* display: flex; */
-  position: fixed;
-  height: 2rem;
-  margin: auto;
-  text-align: center;
-}
-
-.dropdown {
-  position: fixed;
-  margin-right: 0px;
+  align-items: center;
 }
 
 .navigation {
   display: flex;
-  margin-top: 2rem;;
-  justify-content: center;
+  align-items: center;
 }
 
 .caret-up {

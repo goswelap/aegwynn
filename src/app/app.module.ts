@@ -7,16 +7,16 @@ import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AssistantComponent } from './assistant/assistant.component';
 import { NavComponent } from './header/nav/nav.component';
+import { AgendaComponent } from './agenda/agenda.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       HeaderComponent,
       DashboardComponent,
-      AssistantComponent,
-      NavComponent
+      NavComponent,
+      AgendaComponent
    ],
    imports: [
       BrowserModule,

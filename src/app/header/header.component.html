@@ -1,26 +1,15 @@
 <div class="navbar-wrapper">
-   <div class="head-container">
-      <div class="head">
-         <a class="navbar-brand" routerLink="/">Aegwynn</a>
-      </div>
+   <a class="navbar-brand" routerLink="/">Aegwynn</a>
+   <div class="navigation" *ngIf="showNav">
+      <app-nav></app-nav>
    </div>
-
    <div class="button-container">
-      <div class="dropdown">
-         <a role="button" (click)="toggleNav()">
-            <span class="bi bi-caret-up" *ngIf="showNav; else hideNav"></span>
-            <!-- <span class="caret" *ngIf="showNav; else hideNav"></span> -->
-            <ng-template #hideNav>
-               <span class="bi bi-caret-down"></span>
-               <!-- <span class="caret"></span> -->
-            </ng-template>
-         </a>
-      </div>
-   </div>
-
-   <div class="navigation">
-      <div class="nav navbar-nav" *ngIf="showNav">
-         <app-nav></app-nav>
-      </div>
+      <a role="button" (click)="toggleNav()">
+         <span class="bi bi-caret-up" *ngIf="showNav; else hideNav"></span>
+         <ng-template #hideNav>
+            <span class="bi bi-caret-down"></span>
+         </ng-template>
+      </a>
    </div>
 </div>
+

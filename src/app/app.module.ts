@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavComponent } from './header/nav/nav.component';
 import { AgendaComponent } from './agenda/agenda.component';
+import { AgendaItemComponent } from './agenda/agenda-item/agenda-item.component';
 
 @NgModule({
    declarations: [
@@ -16,7 +17,8 @@ import { AgendaComponent } from './agenda/agenda.component';
       HeaderComponent,
       DashboardComponent,
       NavComponent,
-      AgendaComponent
+      AgendaComponent,
+      AgendaItemComponent
    ],
    imports: [
       BrowserModule,

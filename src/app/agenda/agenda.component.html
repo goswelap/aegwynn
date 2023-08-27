@@ -1,5 +1,8 @@
 <div class="agenda-container">
   <div class="agenda-header">
-    <h1>Agenda</h1>
-  </div>
+    <app-agenda-item
+      *ngFor="let agendaItem of agendaItems; let i = index"
+      [agendaItem]="agendaItem"
+      [index] = "i"
+    ></app-agenda-item>  </div>
 </div>

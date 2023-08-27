@@ -2,6 +2,6 @@ text, a, div {
   font-family: "Goudy Old Style", serif;
 }
 
-app-header  {
-  background-color: rgb(104, 75, 36) !important;
+body {
+  background-image: url('assets/OC_Background.jpg');
 }

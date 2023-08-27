@@ -1,5 +1,7 @@
-.caret {
-  font-size: 5px;
+.navbar-wrapper {
+  background-image: url('../../assets/navbar.jpg');
+  /* background-position: center center; */
+  color: white; /* This will ensure text remains visible */
 }
 
 a {
@@ -8,11 +10,11 @@ a {
 }
 
 a:link {
-  color: black;
+  color: white;
 }
 
 a:visited {
-  color: black;
+  color: white;
 }
 
 a:hover {

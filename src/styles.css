@@ -1,3 +1,7 @@
+html, body {
+  height: 100%;
+}
+
 text, a, div {
   font-family: "Goudy Old Style", serif;
 }
@@ -5,3 +9,13 @@ text, a, div {
 body {
   background-image: url('assets/OC_Background.jpg');
 }
+
+.main-container {
+  width: 90vw;
+  height: 95vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+

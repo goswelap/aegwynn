@@ -8,6 +8,7 @@ import { AgendaItem } from './agenda-item/agenda-item.model';
   styleUrls: ['./agenda.component.css']
 })
 export class AgendaComponent {
+  displayCompleted: boolean = false;
   agendaItems: AgendaItem[] = [
     new AgendaItem(
       new Date(2023, 7, 27),
@@ -30,4 +31,18 @@ export class AgendaComponent {
       'Add \'current\' and \'compelted\' agenda item sections'
     ),
   ];
+  completedItems: AgendaItem[] = [
+    new AgendaItem(
+      new Date(2023, 7, 27),
+      'Angular Application',
+      'Style agenda items'
+    ),];
+
+  showAgendaItems() {
+    this.displayCompleted = false;
+  }
+
+  showCompletedItems() {
+    this.displayCompleted = true;
+  }
 }

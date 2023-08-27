@@ -7,5 +7,21 @@
   border-color: white;
   padding: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent black */
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.course {
+  font-style: italic;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+p {
+  font-size: 0.9rem;
 }

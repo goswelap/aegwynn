@@ -8,14 +8,14 @@
     </button>
 
     <ng-template #showCompleted>
-      <button *ngIf="displayCompleted; else showCompleted" class="mark-complete-btn" (click)="toggleItemCompletion()">
+      <button class="mark-complete-btn" (click)="toggleItemCompletion()">
         Incomplete
       </button>
     </ng-template>
 
   </div>
   <p>- {{ agendaItem.assignment }}</p>
-  <button class="remove-btn">
+  <button (click)="onDelete()" class="remove-btn">
     <i class="bi-trash"></i>
   </button>
 </div>

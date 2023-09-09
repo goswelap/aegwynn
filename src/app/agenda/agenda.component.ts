@@ -1,4 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 import { AgendaItem } from './agenda-item/agenda-item.model';
 
@@ -9,6 +11,10 @@ import { AgendaItem } from './agenda-item/agenda-item.model';
 })
 export class AgendaComponent {
   displayCompleted: boolean = false;
+
+  constructor(private router: Router,
+    private route: ActivatedRoute) {
+  }
 
   agendaItems: AgendaItem[] = [
     new AgendaItem(
@@ -39,25 +45,29 @@ export class AgendaComponent {
       'Style agenda items'
     ),];
 
-    toggleDisplay() {
-      this.displayCompleted = !this.displayCompleted;
-    }
+  onAddAgendaItem() {
+    this.router.navigate(['new-item'], { relativeTo: this.route });
+  }
 
-    toggleItemCompletion(index: number) {
-      if (this.displayCompleted) {
-        const item = this.completedItems.splice(index, 1)[0];
-        this.agendaItems.push(item);
-      } else {
-        const item = this.agendaItems.splice(index, 1)[0];
-        this.completedItems.push(item);
-      }
-    }
+  toggleDisplay() {
+    this.displayCompleted = !this.displayCompleted;
+  }
 
-    deleteAgendaItem(index: number) {
-      if (this.displayCompleted) {
-        this.completedItems.splice(index, 1);
-      } else {
-        this.agendaItems.splice(index, 1);
-      }
+  toggleItemCompletion(index: number) {
+    if (this.displayCompleted) {
+      const item = this.completedItems.splice(index, 1)[0];
+      this.agendaItems.push(item);
+    } else {
+      const item = this.agendaItems.splice(index, 1)[0];
+      this.completedItems.push(item);
     }
+  }
+
+  deleteAgendaItem(index: number) {
+    if (this.displayCompleted) {
+      this.completedItems.splice(index, 1);
+    } else {
+      this.agendaItems.splice(index, 1);
+    }
+  }
 }

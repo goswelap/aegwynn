@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavComponent } from './header/nav/nav.component';
 import { AgendaComponent } from './agenda/agenda.component';
 import { AgendaItemComponent } from './agenda/agenda-item/agenda-item.component';
+import { AgendaItemEditComponent } from './agenda/agenda-item-edit/agenda-item-edit.component';
 
 @NgModule({
    declarations: [
@@ -18,7 +19,8 @@ import { AgendaItemComponent } from './agenda/agenda-item/agenda-item.component'
       DashboardComponent,
       NavComponent,
       AgendaComponent,
-      AgendaItemComponent
+      AgendaItemComponent,
+      AgendaItemEditComponent
    ],
    imports: [
       BrowserModule,

@@ -2,6 +2,10 @@
   <div class="header">
     <h4>{{ agendaItem.due_date | date: 'EE MMM d' }} - </h4>
     <p class="course">{{ agendaItem.course }}</p>
+    <button class="mark-complete-btn">Complete</button>
   </div>
   <p>- {{ agendaItem.assignment }}</p>
+  <button class="remove-btn">
+    <i class="bi-trash"></i>
+    </button>
 </div>

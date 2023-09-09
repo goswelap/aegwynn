@@ -38,11 +38,7 @@ export class AgendaComponent {
       'Style agenda items'
     ),];
 
-  showAgendaItems() {
-    this.displayCompleted = false;
-  }
-
-  showCompletedItems() {
-    this.displayCompleted = true;
-  }
+    toggleDisplay() {
+      this.displayCompleted = !this.displayCompleted;
+    }
 }

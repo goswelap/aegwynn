@@ -15,4 +15,12 @@
   display: flex;
   justify-content: flex-end;
   margin-right: 0.5rem;
+  color: white;
+}
+
+.agenda-title {
+  position: absolute;
+  margin-left: 0.5rem;
+  font-size: 2rem;
+  color: white;
 }

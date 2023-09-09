@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { AgendaItem } from '../agenda/agenda-item/agenda-item.model';
+import { AgendaItem } from '../agenda/agenda-list/agenda-item/agenda-item.model';
 // import { Ingredient } from './ingredient.model';
 // import { ShoppingListService } from './shopping-list.service';
 
@@ -9,6 +9,9 @@ import { AgendaItem } from '../agenda/agenda-item/agenda-item.model';
 export class AgendaService {
   agendaItemsChanged = new Subject<AgendaItem[]>();
   completedItemsChanged = new Subject<AgendaItem[]>();
+  startedEditing = new Subject<number>();
+  showCurrent = new Subject<boolean>();
+  showCurrentValue: boolean = true;
 
   private agendaItems: AgendaItem[] = [
     new AgendaItem(
@@ -76,6 +79,14 @@ export class AgendaService {
   addCompletedItem(completedItem: AgendaItem) {
     this.completedItems.push(completedItem);
     this.completedItemsChanged.next(this.completedItems.slice());
+  }
+
+  toggleDisplay() {
+    this.showCurrent.next(this.showCurrentValue = !this.showCurrentValue);
+  }
+
+  getShowCurrent() {
+    return this.showCurrentValue;
   }
 
   markComplete(index: number) {

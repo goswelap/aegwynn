@@ -3,7 +3,7 @@
     <h4>{{ agendaItem.due_date | date: 'EE MMM d' }} - </h4>
     <p class="course">{{ agendaItem.course }}</p>
 
-    <button *ngIf="!displayCompleted; else showCompleted" class="mark-complete-btn" (click)="toggleItemCompletion()">
+    <button *ngIf="showCurrent; else showCompleted" class="mark-complete-btn" (click)="toggleItemCompletion()">
       Complete
     </button>
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 
-import { AgendaItem } from './agenda-item/agenda-item.model';
+import { AgendaItem } from './agenda-list/agenda-item/agenda-item.model';
 import { AgendaService } from '../shared/agenda-service';
 
 @Component({
@@ -11,9 +11,8 @@ import { AgendaService } from '../shared/agenda-service';
   styleUrls: ['./agenda.component.css']
 })
 export class AgendaComponent implements OnInit {
-  agendaSub!: Subscription;
-  completedSub!: Subscription;
-  displayCompleted: boolean = false;
+  displaySub!: Subscription;
+  showCurrent: boolean = true;
 
   agendaItems: AgendaItem[] = [];
   completedItems: AgendaItem[] = [];
@@ -24,21 +23,11 @@ export class AgendaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.agendaSub = this.agendaServ.agendaItemsChanged
-      .subscribe(
-        (agendaItems: AgendaItem[]) => {
-          this.agendaItems = agendaItems;
-        }
-      );
-    this.agendaItems = this.agendaServ.getAgendaItems();
-
-    this.completedSub = this.agendaServ.completedItemsChanged
-      .subscribe(
-        (completedItems: AgendaItem[]) => {
-          this.completedItems = completedItems;
-        }
-      );
-      this.completedItems = this.agendaServ.getCompletedItems();
+    this.displaySub = this.agendaServ.showCurrent.subscribe(
+      (showCurrent: boolean) => {
+        this.showCurrent = showCurrent;
+      }
+    )
   }
 
   onAddAgendaItem() {
@@ -46,22 +35,7 @@ export class AgendaComponent implements OnInit {
   }
 
   toggleDisplay() {
-    this.displayCompleted = !this.displayCompleted;
-  }
-
-  toggleItemCompletion(index: number) {
-    if (this.displayCompleted) {
-      this.agendaServ.markIncomplete(index);
-    } else {
-      this.agendaServ.markComplete(index);
-    }
-  }
-
-  deleteAgendaItem(index: number) {
-    if (this.displayCompleted) {
-      this.agendaServ.deleteCompletedItem(index);
-    } else {
-      this.agendaServ.deleteAgendaItem(index);
-    }
+    // this.displayCompleted = !this.displayCompleted;
+    this.agendaServ.toggleDisplay();
   }
 }

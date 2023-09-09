@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AgendaItemComponent } from '../src/app/agenda/agenda-item/agenda-item.component';
+import { AgendaItemComponent } from '../src/app/agenda/agenda-list/agenda-item/agenda-item.component';
 
 describe('AgendaItemComponent', () => {
   let component: AgendaItemComponent;

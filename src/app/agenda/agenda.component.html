@@ -1,23 +1,16 @@
 <div class="agenda-container">
   <div class="agenda-header">
+    <div class="agenda-title">
+      {{ showCurrent ? 'Current' : 'Completed'}}
+    </div>
     <div class="button-container">
       <button (click)="onAddAgendaItem()">
         <i class="bi-plus-lg"></i>
       </button>
       <button (click)="toggleDisplay()">
-        {{ displayCompleted ? 'Show Current' : 'Show Completed' }}
+        {{ !showCurrent ? 'Show Current' : 'Show Completed' }}
       </button>
     </div>
   </div>
-  <div *ngIf="!displayCompleted; else showCompleted">
-    <app-agenda-item *ngFor="let agendaItem of agendaItems; let i = index" [displayCompleted]="displayCompleted"
-      [agendaItem]="agendaItem" [index]="i" (toggleCompletion)="toggleItemCompletion(i)"
-      (deleteItem)="deleteAgendaItem(i)"></app-agenda-item>
-  </div>
-
-  <ng-template #showCompleted>
-    <app-agenda-item *ngFor="let completedItem of completedItems; let i = index" [displayCompleted]="displayCompleted"
-      [agendaItem]="completedItem" [index]="i" (toggleCompletion)="toggleItemCompletion(i)"
-      (deleteItem)="deleteAgendaItem(i)"></app-agenda-item>
-  </ng-template>
+  <app-agenda-list></app-agenda-list>
 </div>

@@ -10,7 +10,7 @@ import { AgendaItem } from './agenda-item.model';
 export class AgendaItemComponent implements OnInit {
   @Output() toggleCompletion = new EventEmitter<void>();
   @Output() deleteItem = new EventEmitter<void>();
-  @Input() displayCompleted!: boolean;
+  @Input() showCurrent!: boolean;
 
   @Input() agendaItem!: AgendaItem;
   @Input() index!: number;

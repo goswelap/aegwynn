@@ -8,6 +8,7 @@ import { AgendaItem } from '../agenda/agenda-item/agenda-item.model';
 @Injectable()
 export class AgendaService {
   agendaItemsChanged = new Subject<AgendaItem[]>();
+  completedItemsChanged = new Subject<AgendaItem[]>();
 
   private agendaItems: AgendaItem[] = [
     new AgendaItem(
@@ -20,7 +21,24 @@ export class AgendaService {
       'Angular Application',
       'Add up / down arrows to agenda items to allow reordering'
     ),
+    new AgendaItem(
+      new Date(2023, 7, 27),
+      'Angular Application',
+      'Add ability to delete / mark agenda items complete'
+    ),
+    new AgendaItem(
+      new Date(2023, 7, 27),
+      'Angular Application',
+      'Add \'current\' and \'compelted\' agenda item sections'
+    ),
   ];
+
+  completedItems: AgendaItem[] = [
+    new AgendaItem(
+      new Date(2023, 7, 27),
+      'Angular Application',
+      'Style agenda items'
+    ),];
 
   constructor() { }
 
@@ -29,12 +47,25 @@ export class AgendaService {
     this.agendaItemsChanged.next(this.agendaItems.slice());
   }
 
+  setCompletedItems(completedItems: AgendaItem[]) {
+    this.completedItems = completedItems;
+    this.completedItemsChanged.next(this.completedItems.slice());
+  }
+
   getAgendaItems() {
     return this.agendaItems.slice();
   }
 
+  getCompletedItems() {
+    return this.completedItems.slice();
+  }
+
   getAgendaItem(index: number) {
     return this.agendaItems[index];
+  }
+
+  getCompletedItem(index: number) {
+    return this.completedItems[index];
   }
 
   addAgendaItem(agendaItem: AgendaItem) {
@@ -42,13 +73,42 @@ export class AgendaService {
     this.agendaItemsChanged.next(this.agendaItems.slice());
   }
 
+  addCompletedItem(completedItem: AgendaItem) {
+    this.completedItems.push(completedItem);
+    this.completedItemsChanged.next(this.completedItems.slice());
+  }
+
+  markComplete(index: number) {
+    const item = this.agendaItems.splice(index, 1)[0];
+    this.completedItems.push(item);
+    this.agendaItemsChanged.next(this.agendaItems.slice());
+    this.completedItemsChanged.next(this.completedItems.slice());
+  }
+
+  markIncomplete(index: number) {
+    const item = this.completedItems.splice(index, 1)[0];
+    this.agendaItems.push(item);
+    this.agendaItemsChanged.next(this.agendaItems.slice());
+    this.completedItemsChanged.next(this.completedItems.slice());
+  }
+
   updateAgendaItem(index: number, newAgendaItem: AgendaItem) {
     this.agendaItems[index] = newAgendaItem;
     this.agendaItemsChanged.next(this.agendaItems.slice());
   }
 
+  updateCompletedItem(index: number, newCompletedItem: AgendaItem) {
+    this.completedItems[index] = newCompletedItem;
+    this.completedItemsChanged.next(this.completedItems.slice());
+  }
+
   deleteAgendaItem(index: number) {
     this.agendaItems.splice(index, 1);
     this.agendaItemsChanged.next(this.agendaItems.slice());
+  }
+
+  deleteCompletedItem(index: number) {
+    this.completedItems.splice(index, 1);
+    this.completedItemsChanged.next(this.completedItems.slice());
   }
 }

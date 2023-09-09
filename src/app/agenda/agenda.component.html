@@ -6,13 +6,15 @@
       </button>
     </div>
   </div>
-    <div *ngIf="!displayCompleted; else showCompleted">
-      <app-agenda-item *ngFor="let agendaItem of agendaItems; let i = index" [agendaItem]="agendaItem"
-        [index]="i"></app-agenda-item>
-    </div>
+  <div *ngIf="!displayCompleted; else showCompleted">
+    <app-agenda-item *ngFor="let agendaItem of agendaItems; let i = index" [displayCompleted]="displayCompleted"
+      [agendaItem]="agendaItem" [index]="i" (toggleCompletion)="toggleItemCompletion(i)"
+      (deleteItem)="deleteAgendaItem(i)"></app-agenda-item>
+  </div>
 
-    <ng-template #showCompleted>
-      <app-agenda-item *ngFor="let completedItem of completedItems; let i = index" [agendaItem]="completedItem"
-        [index]="i"></app-agenda-item>
-    </ng-template>
+  <ng-template #showCompleted>
+    <app-agenda-item *ngFor="let completedItem of completedItems; let i = index" [displayCompleted]="displayCompleted"
+      [agendaItem]="completedItem" [index]="i" (toggleCompletion)="toggleItemCompletion(i)"
+      (deleteItem)="deleteAgendaItem(i)"></app-agenda-item>
+  </ng-template>
 </div>

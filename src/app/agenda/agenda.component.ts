@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 import { AgendaItem } from './agenda-item/agenda-item.model';
 
@@ -9,6 +9,7 @@ import { AgendaItem } from './agenda-item/agenda-item.model';
 })
 export class AgendaComponent {
   displayCompleted: boolean = false;
+
   agendaItems: AgendaItem[] = [
     new AgendaItem(
       new Date(2023, 7, 27),
@@ -40,5 +41,23 @@ export class AgendaComponent {
 
     toggleDisplay() {
       this.displayCompleted = !this.displayCompleted;
+    }
+
+    toggleItemCompletion(index: number) {
+      if (this.displayCompleted) {
+        const item = this.completedItems.splice(index, 1)[0];
+        this.agendaItems.push(item);
+      } else {
+        const item = this.agendaItems.splice(index, 1)[0];
+        this.completedItems.push(item);
+      }
+    }
+
+    deleteAgendaItem(index: number) {
+      if (this.displayCompleted) {
+        this.completedItems.splice(index, 1);
+      } else {
+        this.agendaItems.splice(index, 1);
+      }
     }
 }

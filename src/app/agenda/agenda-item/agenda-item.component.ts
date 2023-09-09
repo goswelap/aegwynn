@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { AgendaItem } from './agenda-item.model';
 
@@ -8,10 +8,23 @@ import { AgendaItem } from './agenda-item.model';
   styleUrls: ['./agenda-item.component.css']
 })
 export class AgendaItemComponent implements OnInit {
+  @Output() toggleCompletion = new EventEmitter<void>();
+  @Output() deleteItem = new EventEmitter<void>();
+  @Input() displayCompleted!: boolean;
+
   @Input() agendaItem!: AgendaItem;
   @Input() index!: number;
 
   constructor() { }
 
   ngOnInit() { }
+
+  toggleItemCompletion() {
+    this.toggleCompletion.emit();
+  }
+
+  onDelete() {
+    this.deleteItem.emit();
+  }
+
 }

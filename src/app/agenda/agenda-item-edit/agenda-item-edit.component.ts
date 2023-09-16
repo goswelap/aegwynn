@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+
 import { AgendaItem } from '../agenda-list/agenda-item/agenda-item.model';
 import { AgendaService } from '../../shared/agenda.service';
 

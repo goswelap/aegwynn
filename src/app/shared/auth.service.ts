@@ -71,28 +71,31 @@ export class AuthService {
    }
 
    autoLogin() {
+      console.log("autoLogin...");
       const storedData = localStorage.getItem('userData') ?? "{}";
-      if (storedData) {
-         const userData: {
-            email: string;
-            id: string;
-            _token: string;
-            _tokenExpirationDate: string;
-         } = JSON.parse(storedData);
+      if (!storedData) {
+         return;
+      }
+      const userData: {
+         email: string;
+         id: string;
+         _token: string;
+         _tokenExpirationDate: string;
+      } = JSON.parse(storedData);
+      console.log("user data: ", userData);
 
-         const loadedUser = new User(
-            userData.email,
-            userData.id,
-            userData._token,
-            new Date(userData._tokenExpirationDate)
-         );
-         if (loadedUser.token) {
-            this.user.next(loadedUser);
-            const expirationDuration =
-               new Date(userData._tokenExpirationDate).getTime() -
-               new Date().getTime();
-            this.autoLogout(expirationDuration);
-         }
+      const loadedUser = new User(
+         userData.email,
+         userData.id,
+         userData._token,
+         new Date(userData._tokenExpirationDate)
+      );
+      if (loadedUser.token) {
+         this.user.next(loadedUser);
+         const expirationDuration =
+            new Date(userData._tokenExpirationDate).getTime() -
+            new Date().getTime();
+         this.autoLogout(expirationDuration);
       }
    }
 

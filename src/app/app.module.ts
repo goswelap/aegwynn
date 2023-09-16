@@ -8,11 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavComponent } from './header/nav/nav.component';
-import { AgendaComponent } from './agenda/agenda.component';
-import { AgendaItemComponent } from './agenda/agenda-list/agenda-item/agenda-item.component';
-import { AgendaItemEditComponent } from './agenda/agenda-item-edit/agenda-item-edit.component';
-import { AgendaService } from './shared/agenda.service';
-import { AgendaListComponent } from './agenda/agenda-list/agenda-list.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
    declarations: [
@@ -20,10 +16,7 @@ import { AgendaListComponent } from './agenda/agenda-list/agenda-list.component'
       HeaderComponent,
       DashboardComponent,
       NavComponent,
-      AgendaComponent,
-      AgendaItemComponent,
-      AgendaItemEditComponent,
-      AgendaListComponent
+      HomeComponent
       ],
    imports: [
       BrowserModule,
@@ -32,7 +25,6 @@ import { AgendaListComponent } from './agenda/agenda-list/agenda-list.component'
       FormsModule,
       ReactiveFormsModule,
    ],
-   providers: [AgendaService],
    bootstrap: [AppComponent]
 })
 export class AppModule { }

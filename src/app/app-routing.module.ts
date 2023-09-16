@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AgendaComponent } from './agenda/agenda.component';
-import { AgendaItemEditComponent } from './agenda/agenda-item-edit/agenda-item-edit.component';
 
 const routes: Routes = [
-   // { path: "", redirectTo: "/dashboard", pathMatch: "full" },
+   { path: "", redirectTo: "/home", pathMatch: "full" },
+   { path: "home", component: HomeComponent},
    { path: "dashboard", component: DashboardComponent },
-   { path: "agenda", component: AgendaComponent },
-   { path: "agenda/new-item", component: AgendaItemEditComponent },
+   {
+      path: "agenda",
+      loadChildren: () => import("./agenda/agenda.module").then(m => m.AgendaModule)
+   },
    {
       path: "auth",
       loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)

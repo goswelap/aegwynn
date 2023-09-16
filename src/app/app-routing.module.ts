@@ -10,6 +10,10 @@ const routes: Routes = [
    { path: "dashboard", component: DashboardComponent },
    { path: "agenda", component: AgendaComponent },
    { path: "agenda/new-item", component: AgendaItemEditComponent },
+   {
+      path: "auth",
+      loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)
+   }
 ];
 
 @NgModule({

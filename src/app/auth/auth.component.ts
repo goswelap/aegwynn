@@ -14,7 +14,7 @@ import { AuthService, AuthResponseData } from '../shared/auth.service';
 export class AuthComponent {
    isLoginMode = true;
    isLoading = false;
-   error: string = "";
+   error: string = "{}";
 
    constructor(
       private authService: AuthService,
@@ -60,6 +60,6 @@ export class AuthComponent {
    }
 
    onHandleError() {
-      this.error = "";
+      this.error = "{}";
    }
 }

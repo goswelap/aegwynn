@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-// import { AuthService } from './auth/auth.service';
+import { AuthService } from './shared/auth.service';
 
 @Component({
    selector: 'app-root',
@@ -11,11 +11,11 @@ export class AppComponent implements OnInit {
    loadedFeature = 'dashboard';
 
    constructor(
-      // private authService: AuthService
+      private authService: AuthService
    ) { }
 
    ngOnInit() {
-      // this.authService.autoLogin();
+      this.authService.autoLogin();
    }
 
    onNavigate(feature: Event) {

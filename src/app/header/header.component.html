@@ -14,7 +14,10 @@
 </div>
 
 <div id="userDropdown" *ngIf="showDropdown">
-   {{ 'username' }}
-   <a role="button" (click)="logout()">Logout</a>
+   <div>{{ username || 'guest' }}</div>
+   <div *ngIf="isAuthenticated; else notAuthenticated"><a role="button" (click)="logout()">Logout</a></div>
+   <ng-template #notAuthenticated>
+      <div><a role="button" (click)="login()">Sign In</a></div>
+   </ng-template>
 </div>
 

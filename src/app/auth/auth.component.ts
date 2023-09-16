@@ -9,7 +9,8 @@ import { AuthService, AuthResponseData } from '../shared/auth.service';
 
 @Component({
    selector: 'app-auth',
-   templateUrl: './auth.component.html'
+   templateUrl: './auth.component.html',
+   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent {
    isLoginMode = true;

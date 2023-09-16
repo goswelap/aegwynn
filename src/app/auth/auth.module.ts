@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { AgendaService } from '../shared/agenda.service';
+import { AuthService } from '../shared/auth.service';
 
 @NgModule({
   declarations: [AuthComponent],
@@ -12,6 +13,6 @@ import { AgendaService } from '../shared/agenda.service';
     FormsModule,
     RouterModule.forChild([{ path: '', component: AuthComponent }]),
   ],
-  providers: [AgendaService]
+  providers: [AgendaService, AuthService]
 })
 export class AuthModule {}

@@ -1,15 +1,20 @@
 <div class="navbar-wrapper">
    <a class="navbar-brand" routerLink="/">Aegwynn</a>
-   <div class="navigation" *ngIf="showNav">
+   <div class="navigation">
       <app-nav></app-nav>
    </div>
    <div class="button-container">
-      <a role="button" (click)="toggleNav()">
-         <span class="bi bi-caret-up" *ngIf="showNav; else hideNav"></span>
-         <ng-template #hideNav>
+      <a role="button" (click)="toggleDropdown()">
+         <span class="bi bi-caret-up" *ngIf="showDropdown; else hideDropdown"></span>
+         <ng-template #hideDropdown>
             <span class="bi bi-caret-down"></span>
          </ng-template>
       </a>
    </div>
+</div>
+
+<div id="userDropdown" *ngIf="showDropdown">
+   {{ 'username' }}
+   <a role="button" (click)="logout()">Logout</a>
 </div>
 

@@ -1,4 +1,5 @@
 .navbar-wrapper {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,3 +40,29 @@ a:hover {
   transform: rotate(180deg);
 }
 
+#userDropdown {
+  position: absolute;
+  color: white;
+  top: 2rem;
+  right: 1rem;
+  border-radius: 7px;
+  border-width: 3px;
+  border-style: double;
+  border-color: white;
+  padding: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.agenda-item {
+  color: white;
+  margin: 0.5rem;
+  border-radius: 7px;
+  border-width: 3px;
+  border-style: double;
+  border-color: white;
+  padding: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.6);
+  position: relative;
+}

@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
    isAuthenticated = false;
-   showNav = true;
+   showDropdown = false;
    //   private userSub: Subscription;
 
    constructor(
@@ -19,8 +19,8 @@ export class HeaderComponent implements OnInit {
       //  private authService: AuthService
    ) { }
 
-   toggleNav() {
-      this.showNav = !this.showNav;
+   toggleDropdown() {
+      this.showDropdown = !this.showDropdown;
    }
 
    ngOnInit() {
@@ -29,5 +29,9 @@ export class HeaderComponent implements OnInit {
       //    console.log(!user);
       //    console.log(!!user);
       //  });
+   }
+
+   logout() {
+      //  this.authService.logout();
    }
 }

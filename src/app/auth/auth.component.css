@@ -1,5 +1,5 @@
 input {
-  /* color: white; */
+  color: white;
   background-color: rgba(0, 0, 0, 0.6) !important;
   border-radius: 7px;
   border-width: 3px;
@@ -11,18 +11,27 @@ input {
   font-size: 1rem;
   margin-bottom: 0.5rem;
 }
-input:-internal-autofill-selected {
+
+input:-internal-autofill-selected,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
   background-color: rgba(0, 0, 0, 0.6) !important;
   color: white !important;
+  transition-delay: 9999s !important;
+
 }
 
 input:focus {
   outline: none;
-  box-shadow: 0 0 10px white;  /* This will give a glowing effect around the input when it's focused */
+  box-shadow: 0 0 10px white;
+  /* This will give a glowing effect around the input when it's focused */
 }
 
 input::placeholder {
-  color: rgba(255, 255, 255, 0.7);  /* Lighter white color for the placeholder text */
+  color: rgba(255, 255, 255, 0.7);
+  /* Lighter white color for the placeholder text */
 }
 
 .auth-button {
@@ -32,11 +41,11 @@ input::placeholder {
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
-  margin-top: 0.5rem;  /* Optional: Add some spacing above the button */
+  margin-top: 0.5rem;
+  /* Optional: Add some spacing above the button */
 }
 
 .auth-button:hover {
-  background-color: rgba(0, 0, 0, 0.8);  /* Slightly darker background on hover */
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Slightly darker background on hover */
 }
-
-

@@ -1,4 +1,4 @@
-import { Component, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
@@ -14,12 +14,11 @@ import { AuthService, AuthResponseData } from '../shared/auth.service';
 export class AuthComponent {
    isLoginMode = true;
    isLoading = false;
-   error: string = "{}";
+   error!: string | null;
 
    constructor(
       private authService: AuthService,
-      private router: Router,
-      private componentFactoryResolver: ComponentFactoryResolver
+      private router: Router
    ) { }
 
    onSwitchMode() {
@@ -47,7 +46,7 @@ export class AuthComponent {
          resData => {
             console.log(resData);
             this.isLoading = false;
-            this.router.navigate(['/recipes']);
+            this.router.navigate(['/dashboard']);
          },
          errorMessage => {
             console.log(errorMessage);
@@ -60,6 +59,6 @@ export class AuthComponent {
    }
 
    onHandleError() {
-      this.error = "{}";
+      this.error = null;
    }
 }

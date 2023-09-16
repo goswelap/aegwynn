@@ -1,22 +1,25 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 // import { DataStorageService } from '../shared/data-storage.service';
-// import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
    selector: 'app-header',
    templateUrl: './header.component.html',
    styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+   private userSub!: Subscription;
+   username: string | null = null;
    isAuthenticated = false;
    showDropdown = false;
-   //   private userSub: Subscription;
 
    constructor(
       //  private dataStorageService: DataStorageService,
-      //  private authService: AuthService
+      private router: Router,
+      private authService: AuthService
    ) { }
 
    toggleDropdown() {
@@ -24,14 +27,24 @@ export class HeaderComponent implements OnInit {
    }
 
    ngOnInit() {
-      //  this.userSub = this.authService.user.subscribe(user => {
-      //    this.isAuthenticated = !!user;
-      //    console.log(!user);
-      //    console.log(!!user);
-      //  });
+      this.userSub = this.authService.user.subscribe(user => {
+         this.isAuthenticated = !!user;
+         this.username = user ? user.email : null;
+      });
    }
 
    logout() {
-      //  this.authService.logout();
+      this.showDropdown = false;
+      this.authService.logout();
+      this.username = null;
+   }
+
+   login() {
+      this.showDropdown = false;
+      this.router.navigate(['/auth']);
+   }
+
+   ngOnDestroy() {
+      this.userSub.unsubscribe();
    }
 }

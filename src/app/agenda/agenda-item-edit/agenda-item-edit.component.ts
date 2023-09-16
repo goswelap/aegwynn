@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { AgendaItem } from '../agenda-list/agenda-item/agenda-item.model';
-import { AgendaService } from '../../shared/agenda-service';
+import { AgendaService } from '../../shared/agenda.service';
 
 import { NgForm } from '@angular/forms';
 

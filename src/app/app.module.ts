@@ -11,7 +11,7 @@ import { NavComponent } from './header/nav/nav.component';
 import { AgendaComponent } from './agenda/agenda.component';
 import { AgendaItemComponent } from './agenda/agenda-list/agenda-item/agenda-item.component';
 import { AgendaItemEditComponent } from './agenda/agenda-item-edit/agenda-item-edit.component';
-import { AgendaService } from './shared/agenda-service';
+import { AgendaService } from './shared/agenda.service';
 import { AgendaListComponent } from './agenda/agenda-list/agenda-list.component';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { AgendaListComponent } from './agenda/agenda-list/agenda-list.component'
       AgendaItemComponent,
       AgendaItemEditComponent,
       AgendaListComponent
-   ],
+      ],
    imports: [
       BrowserModule,
       AppRoutingModule,

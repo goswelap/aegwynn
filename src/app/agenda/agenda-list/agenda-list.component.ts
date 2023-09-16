@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, Subject } from 'rxjs';
 
 import { AgendaItem } from '../agenda-list/agenda-item/agenda-item.model';
-import { AgendaService } from '../../shared/agenda-service';
+import { AgendaService } from '../../shared/agenda.service';
 
 @Component({
   selector: 'app-agenda-list',

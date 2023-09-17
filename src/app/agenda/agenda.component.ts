@@ -31,7 +31,7 @@ export class AgendaComponent implements OnInit {
   }
 
   onAddAgendaItem() {
-    this.router.navigate(['new-item'], { relativeTo: this.route });
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
 
   toggleDisplay() {

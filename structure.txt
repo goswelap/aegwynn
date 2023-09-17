@@ -1,0 +1,34 @@
+Main App
+│
+├── AppModule
+│   ├── AppComponent
+│   ├── HeaderComponent
+│   ├── DashboardComponent
+│   ├── NavComponent
+│   ├── HomeComponent
+│   └── Services:
+│       └── AuthService (provided in 'root')
+│
+├── AppRoutingModule
+│   ├── Route: /home -> HomeComponent
+│   ├── Route: /dashboard -> DashboardComponent
+│   ├── Route: /agenda -> AgendaModule (Lazy Loaded)
+│   └── Route: /auth -> AuthModule (Lazy Loaded)
+│
+├── AuthModule
+│   ├── AuthComponent
+│   └── Services:
+│       └── (None specific to this module based on the provided info)
+│
+└── AgendaModule
+    ├── AgendaComponent
+    │   ├── Child Route: /agenda -> AgendaComponent
+    │   ├── Child Route: /new -> AgendaItemEditComponent
+    │   └── Child Route: /:id/edit -> AgendaItemEditComponent
+    ├── AgendaListComponent
+    ├── AgendaItemComponent
+    ├── AgendaItemEditComponent
+    └── Services:
+        ├── AgendaService
+        └── AuthInterceptorService (as an HTTP interceptor)
+

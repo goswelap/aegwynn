@@ -5,43 +5,45 @@ import { AgendaItem } from '../agenda/agenda-list/agenda-item/agenda-item.model'
 // import { Ingredient } from './ingredient.model';
 // import { ShoppingListService } from './shopping-list.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AgendaService {
   agendaItemsChanged = new Subject<AgendaItem[]>();
   completedItemsChanged = new Subject<AgendaItem[]>();
   startedEditing = new Subject<number>();
   showCurrent = new Subject<boolean>();
   showCurrentValue: boolean = true;
+  private agendaItems: AgendaItem[] = [];
+  private completedItems: AgendaItem[] = [];
 
-  private agendaItems: AgendaItem[] = [
-    new AgendaItem(
-      new Date(2023, 7, 27),
-      'Angular Application',
-      'Replace up arrow with gear icon'
-    ),
-    new AgendaItem(
-      new Date(2023, 7, 27),
-      'Angular Application',
-      'Add up / down arrows to agenda items to allow reordering'
-    ),
-    new AgendaItem(
-      new Date(2023, 7, 27),
-      'Angular Application',
-      'Add ability to delete / mark agenda items complete'
-    ),
-    new AgendaItem(
-      new Date(2023, 7, 27),
-      'Angular Application',
-      'Add \'current\' and \'compelted\' agenda item sections'
-    ),
-  ];
+  // private agendaItems: AgendaItem[] = [
+  //   new AgendaItem(
+  //     new Date(2023, 7, 27),
+  //     'Angular Application',
+  //     'Replace up arrow with gear icon'
+  //   ),
+  //   new AgendaItem(
+  //     new Date(2023, 7, 27),
+  //     'Angular Application',
+  //     'Add up / down arrows to agenda items to allow reordering'
+  //   ),
+  //   new AgendaItem(
+  //     new Date(2023, 7, 27),
+  //     'Angular Application',
+  //     'Add ability to delete / mark agenda items complete'
+  //   ),
+  //   new AgendaItem(
+  //     new Date(2023, 7, 27),
+  //     'Angular Application',
+  //     'Add \'current\' and \'compelted\' agenda item sections'
+  //   ),
+  // ];
 
-  completedItems: AgendaItem[] = [
-    new AgendaItem(
-      new Date(2023, 7, 27),
-      'Angular Application',
-      'Style agenda items'
-    ),];
+  // completedItems: AgendaItem[] = [
+  //   new AgendaItem(
+  //     new Date(2023, 7, 27),
+  //     'Angular Application',
+  //     'Style agenda items'
+  //   ),];
 
   constructor() { }
 

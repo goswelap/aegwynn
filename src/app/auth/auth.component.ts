@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 
 import { AuthService, AuthResponseData } from '../shared/auth.service';
+import { DataStorageService } from '../shared/data-storage.service';
 // import { AlertComponent } from '../shared/alert/alert.component';
 // import { PlaceholderDirective } from '../placeholder/placeholder.directive';
 
@@ -19,6 +20,7 @@ export class AuthComponent {
 
    constructor(
       private authService: AuthService,
+      private dataStorageService: DataStorageService,
       private router: Router
    ) { }
 
@@ -47,7 +49,8 @@ export class AuthComponent {
          resData => {
             console.log(resData);
             this.isLoading = false;
-            this.router.navigate(['/dashboard']);
+            this.dataStorageService.fetchAgendaItems().subscribe(); // Fetch agenda items after successful login/signup
+            this.router.navigate(['/agenda']);
          },
          errorMessage => {
             console.log(errorMessage);

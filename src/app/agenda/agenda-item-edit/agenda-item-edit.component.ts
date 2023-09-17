@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-
 import { AgendaItem } from '../agenda-list/agenda-item/agenda-item.model';
 import { AgendaService } from '../../shared/agenda.service';
+
+import { DataStorageService } from '../../shared/data-storage.service';
 
 import { NgForm } from '@angular/forms';
 
@@ -22,6 +23,7 @@ export class AgendaItemEditComponent implements OnInit {
   editedItem!: AgendaItem;
 
   constructor(private agendaServ: AgendaService,
+    private dataStorageService: DataStorageService,
     private router: Router,
     private route: ActivatedRoute) { }
   ngOnInit() {
@@ -47,6 +49,8 @@ export class AgendaItemEditComponent implements OnInit {
     } else {
       this.agendaServ.addAgendaItem(newAgendaItem);
     }
+    this.dataStorageService.storeAgendaItems();
+
     this.editMode = false;
     form.reset();
   }

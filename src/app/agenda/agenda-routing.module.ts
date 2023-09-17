@@ -15,12 +15,12 @@ const routes: Routes = [
     component: AgendaComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'agenda', component: AgendaComponent },
+      { path: '', component: AgendaComponent },
       { path: 'new', component: AgendaItemEditComponent },
       {
         path: ':id/edit',
         component: AgendaItemEditComponent,
-        // resolve: [AgendaItemEditComponent]
+        resolve: [AgendaItemEditComponent]
       }
     ]
   }

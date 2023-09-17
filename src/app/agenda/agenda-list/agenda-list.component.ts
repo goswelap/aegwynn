@@ -30,10 +30,11 @@ export class AgendaListComponent implements OnInit {
       .subscribe(
         (agendaItems: AgendaItem[]) => {
           this.agendaItems = agendaItems;
+          console.log('agendaItems sub / agenda-list: ', this.agendaItems);
         }
       );
     this.agendaItems = this.agendaServ.getAgendaItems();
-
+    console.log('ngOnInit agenda-list: ', this.agendaItems);
     this.completedSub = this.agendaServ.completedItemsChanged
       .subscribe(
         (completedItems: AgendaItem[]) => {

@@ -14,6 +14,7 @@ export class DataStorageService {
 
    storeAgendaItems() {
       const agendaItems = this.agendaService.getAgendaItems();
+      console.log("storing: ", agendaItems);
       this.http
          .put(
             'https://aegwynn-c7092-default-rtdb.firebaseio.com/agendaItems.json',

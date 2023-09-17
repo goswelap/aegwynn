@@ -29,7 +29,7 @@ export class AgendaItemEditComponent implements OnInit {
   ngOnInit() {
     this.editSub = this.agendaServ.startedEditing.subscribe(
       (index: number) => {
-        this.editMode = true;
+        this.editMode = false;
         this.editedItemIndex = index;
         this.editedItem = this.agendaServ.getAgendaItem(index);
         this.agendaForm.setValue({
@@ -49,6 +49,8 @@ export class AgendaItemEditComponent implements OnInit {
     } else {
       this.agendaServ.addAgendaItem(newAgendaItem);
     }
+    const logAgendaItems = this.agendaServ.getAgendaItems();
+    console.log("agenda-item-edit after add:", logAgendaItems);
     this.dataStorageService.storeAgendaItems();
 
     this.editMode = false;

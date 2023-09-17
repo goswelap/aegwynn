@@ -74,8 +74,11 @@ export class AgendaService {
   }
 
   addAgendaItem(agendaItem: AgendaItem) {
+    console.log('service adding: ', agendaItem);
     this.agendaItems.push(agendaItem);
+    console.log('service agendaItems: ', this.agendaItems);
     this.agendaItemsChanged.next(this.agendaItems.slice());
+    console.log('service agendaItemsChanged: ', this.agendaItemsChanged);
   }
 
   addCompletedItem(completedItem: AgendaItem) {

@@ -5,7 +5,8 @@ import { AgendaComponent } from './agenda.component';
 import { AgendaItemComponent } from './agenda-list/agenda-item/agenda-item.component';
 import { AgendaListComponent } from './agenda-list/agenda-list.component';
 import { AgendaItemEditComponent } from './agenda-item-edit/agenda-item-edit.component';
-import { AgendaService } from '../shared/agenda.service';``
+import { AgendaService } from '../shared/agenda.service';
+import { AgendaResolverService } from '../shared/agenda-resolver.service';
 import { AuthGuard } from '../auth/auth.guard';
 
 
@@ -20,7 +21,7 @@ const routes: Routes = [
       {
         path: ':id/edit',
         component: AgendaItemEditComponent,
-        resolve: [AgendaItemEditComponent]
+        resolve: [AgendaResolverService]
       }
     ]
   }

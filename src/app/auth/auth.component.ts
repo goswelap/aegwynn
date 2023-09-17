@@ -49,7 +49,7 @@ export class AuthComponent {
          resData => {
             console.log(resData);
             this.isLoading = false;
-            this.dataStorageService.fetchAgendaItems().subscribe(); // Fetch agenda items after successful login/signup
+            // this.dataStorageService.fetchAgendaItems().subscribe();
             this.router.navigate(['/agenda']);
          },
          errorMessage => {

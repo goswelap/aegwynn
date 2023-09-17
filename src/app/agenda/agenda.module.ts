@@ -30,7 +30,7 @@ import { AgendaService } from '../shared/agenda.service';
     AgendaRoutingModule
   ],
   providers: [
-    AgendaService,
+    // AgendaService,
     // DataStorageService,
     {
       provide: HTTP_INTERCEPTORS,

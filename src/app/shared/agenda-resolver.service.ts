@@ -10,7 +10,7 @@ import { DataStorageService } from '../shared/data-storage.service';
 import { AgendaService } from './agenda.service';
 
 @Injectable({ providedIn: 'root' })
-export class RecipesResolverService implements Resolve<AgendaItem[]> {
+export class AgendaResolverService implements Resolve<AgendaItem[]> {
   constructor(
     private dataStorageService: DataStorageService,
     private agendaService: AgendaService

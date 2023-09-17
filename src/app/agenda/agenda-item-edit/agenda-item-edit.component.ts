@@ -48,6 +48,7 @@ export class AgendaItemEditComponent implements OnInit {
       this.agendaServ.updateAgendaItem(this.editedItemIndex, newAgendaItem);
     } else {
       this.agendaServ.addAgendaItem(newAgendaItem);
+      this.updateDB();
     }
     const logAgendaItems = this.agendaServ.getAgendaItems();
     console.log("agenda-item-edit after add:", logAgendaItems);
@@ -64,5 +65,10 @@ export class AgendaItemEditComponent implements OnInit {
 
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  updateDB() {
+    this.dataStorageService.storeAgendaItems();
+    this.dataStorageService.storeCompletedItems();
   }
 }

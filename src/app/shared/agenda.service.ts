@@ -58,10 +58,12 @@ export class AgendaService {
   }
 
   getAgendaItems() {
+    console.log('getAgendaItems(): ', this.agendaItems);
     return this.agendaItems.slice();
   }
 
   getCompletedItems() {
+    console.log('getCompletedItems(): ', this.completedItems);
     return this.completedItems.slice();
   }
 

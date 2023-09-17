@@ -4,6 +4,7 @@ import { Subscription, Subject } from 'rxjs';
 
 import { AgendaItem } from './agenda-list/agenda-item/agenda-item.model';
 import { AgendaService } from '../shared/agenda.service';
+import { DataStorageService } from '../shared/data-storage.service';
 
 @Component({
   selector: 'app-agenda',
@@ -14,10 +15,8 @@ export class AgendaComponent implements OnInit {
   displaySub!: Subscription;
   showCurrent: boolean = true;
 
-  agendaItems: AgendaItem[] = [];
-  completedItems: AgendaItem[] = [];
-
   constructor(private agendaServ: AgendaService,
+    private dataStorageServ: DataStorageService,
     private router: Router,
     private route: ActivatedRoute) {
   }
@@ -28,6 +27,8 @@ export class AgendaComponent implements OnInit {
         this.showCurrent = showCurrent;
       }
     )
+    this.dataStorageServ.fetchAgendaItems().subscribe();
+    this.dataStorageServ.fetchCompletedItems().subscribe();
   }
 
   onAddAgendaItem() {

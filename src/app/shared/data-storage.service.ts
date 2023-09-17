@@ -10,7 +10,7 @@ export class DataStorageService {
    constructor(
       private http: HttpClient,
       private agendaService: AgendaService,
-      ) { }
+   ) { }
 
    storeAgendaItems() {
       const agendaItems = this.agendaService.getAgendaItems();
@@ -19,6 +19,19 @@ export class DataStorageService {
          .put(
             'https://aegwynn-c7092-default-rtdb.firebaseio.com/agendaItems.json',
             agendaItems
+         )
+         .subscribe(response => {
+            console.log(response);
+         });
+   }
+
+   storeCompletedItems() {
+      const completedItems = this.agendaService.getCompletedItems();
+      console.log("storing: ", completedItems);
+      this.http
+         .put(
+            'https://aegwynn-c7092-default-rtdb.firebaseio.com/completedItems.json',
+            completedItems
          )
          .subscribe(response => {
             console.log(response);
@@ -40,6 +53,25 @@ export class DataStorageService {
             }),
             tap(agendaItems => {
                this.agendaService.setAgendaItems(agendaItems);
+            })
+         );
+   }
+
+   fetchCompletedItems() {
+      return this.http
+         .get<AgendaItem[]>(
+            'https://aegwynn-c7092-default-rtdb.firebaseio.com/completedItems.json'
+         )
+         .pipe(
+            map(completedItems => {
+               return completedItems.map(completedItem => {
+                  return {
+                     ...completedItem
+                  };
+               });
+            }),
+            tap(completedItems => {
+               this.agendaService.setCompletedItems(completedItems);
             })
          );
    }

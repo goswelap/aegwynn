@@ -19,6 +19,7 @@ export interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+   private localId: string | null = null;
    user = new BehaviorSubject<User | null>(null);
    private tokenExpirationTimer: any;
 
@@ -60,14 +61,17 @@ export class AuthService {
          .pipe(
             catchError(this.handleError),
             tap(resData => {
-               this.handleAuthentication(
-                  resData.email,
-                  resData.localId,
-                  resData.idToken,
-                  +resData.expiresIn
-               );
+                this.localId = resData.localId; // Set the _localId here
+            }),
+            tap(resData => {
+                this.handleAuthentication(
+                    resData.email,
+                    resData.localId,
+                    resData.idToken,
+                    +resData.expiresIn
+                );
             })
-         );
+        );
    }
 
    autoLogin() {
@@ -97,6 +101,7 @@ export class AuthService {
             new Date().getTime();
          this.autoLogout(expirationDuration);
       }
+      this.localId = userData.id;
    }
 
    logout() {
@@ -141,4 +146,8 @@ export class AuthService {
       }
       return throwError(errorMessage);
    }
+
+   getLocalId(): string | null {
+      return this.localId;
+    }
 }

@@ -4,20 +4,24 @@ import { map, tap, take, exhaustMap } from 'rxjs/operators';
 
 import { AgendaItem } from '../agenda/agenda-list/agenda-item/agenda-item.model';
 import { AgendaService } from './agenda.service';
+import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
+   private userId: string | null = null;
    constructor(
       private http: HttpClient,
       private agendaService: AgendaService,
+      private authService: AuthService
    ) { }
 
    storeAgendaItems() {
       const agendaItems = this.agendaService.getAgendaItems();
+      const userId = this.authService.getLocalId();
       console.log("storing: ", agendaItems);
       this.http
          .put(
-            'https://aegwynn-c7092-default-rtdb.firebaseio.com/agendaItems.json',
+            `https://aegwynn-c7092-default-rtdb.firebaseio.com/${userId}/agendaItems.json`,
             agendaItems
          )
          .subscribe(response => {
@@ -27,10 +31,11 @@ export class DataStorageService {
 
    storeCompletedItems() {
       const completedItems = this.agendaService.getCompletedItems();
+      const userId = this.authService.getLocalId();
       console.log("storing: ", completedItems);
       this.http
          .put(
-            'https://aegwynn-c7092-default-rtdb.firebaseio.com/completedItems.json',
+            `https://aegwynn-c7092-default-rtdb.firebaseio.com/${userId}/completedItems.json`,
             completedItems
          )
          .subscribe(response => {
@@ -39,9 +44,10 @@ export class DataStorageService {
    }
 
    fetchAgendaItems() {
+      const userId = this.authService.getLocalId();
       return this.http
          .get<AgendaItem[]>(
-            'https://aegwynn-c7092-default-rtdb.firebaseio.com/agendaItems.json'
+            `https://aegwynn-c7092-default-rtdb.firebaseio.com/${userId}/agendaItems.json`
          )
          .pipe(
             map(agendaItems => {
@@ -58,9 +64,10 @@ export class DataStorageService {
    }
 
    fetchCompletedItems() {
+      const userId = this.authService.getLocalId();
       return this.http
          .get<AgendaItem[]>(
-            'https://aegwynn-c7092-default-rtdb.firebaseio.com/completedItems.json'
+            `https://aegwynn-c7092-default-rtdb.firebaseio.com/${userId}/completedItems.json`
          )
          .pipe(
             map(completedItems => {

@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavComponent } from './header/nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './dashboard/settings/settings.component';
+import { OpenaiService } from './shared/openai.service';
 
 @NgModule({
    declarations: [
@@ -27,6 +28,7 @@ import { SettingsComponent } from './dashboard/settings/settings.component';
       FormsModule,
       ReactiveFormsModule,
    ],
+   providers: [OpenaiService],
    bootstrap: [AppComponent]
 })
 export class AppModule { }

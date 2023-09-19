@@ -27,6 +27,7 @@ import { OpenaiService } from './shared/openai.service';
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
+      HttpClientModule
    ],
    providers: [OpenaiService],
    bootstrap: [AppComponent]

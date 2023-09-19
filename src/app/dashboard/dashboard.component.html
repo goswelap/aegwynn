@@ -2,10 +2,11 @@
   <div class="assistant-header">
     <h4>Assistant</h4>
   </div>
-  <p></p>
+  <p>{{ response }}</p>
 </div>
 
 <div class="input-container">
-  <input type="text" id="course" class="form-control" name="course" ngModel>
+  <!-- <input type="text" id="course" class="form-control" name="course" ngModel> -->
+  <input type="text" [(ngModel)]="userMessage" class="form-control">
   <button class="btn btn-primary" (click)="send()"><i class="bi bi-send"></i></button>
 </div>

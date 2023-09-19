@@ -1,14 +1,11 @@
 <div class="navbar-wrapper">
-   <a class="navbar-brand" routerLink="/">Aegwynn</a>
+   <a class="navbar-brand" routerLink="/"><i class="bi bi-house"></i> Aegwynn</a>
    <div class="navigation">
       <app-nav></app-nav>
    </div>
    <div class="button-container">
       <a role="button" (click)="toggleDropdown()">
-         <span class="bi bi-caret-up" *ngIf="showDropdown; else hideDropdown"></span>
-         <ng-template #hideDropdown>
-            <span class="bi bi-caret-down"></span>
-         </ng-template>
+         <span class="bi bi-gear-fill"></span>
       </a>
    </div>
 </div>

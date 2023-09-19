@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavComponent } from './header/nav/nav.component';
 import { HomeComponent } from './home/home.component';
+import { SettingsComponent } from './dashboard/settings/settings.component';
 
 @NgModule({
    declarations: [
@@ -16,7 +17,8 @@ import { HomeComponent } from './home/home.component';
       HeaderComponent,
       DashboardComponent,
       NavComponent,
-      HomeComponent
+      HomeComponent,
+      SettingsComponent
       ],
    imports: [
       BrowserModule,

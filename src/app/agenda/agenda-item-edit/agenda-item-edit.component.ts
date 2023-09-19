@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { NgForm } from '@angular/forms';
+
 
 import { AgendaItem } from '../agenda-list/agenda-item/agenda-item.model';
 import { AgendaService } from '../../shared/agenda.service';
-
 import { DataStorageService } from '../../shared/data-storage.service';
-
-import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -51,7 +50,6 @@ export class AgendaItemEditComponent implements OnInit {
       this.updateDB();
     }
     const logAgendaItems = this.agendaServ.getAgendaItems();
-    console.log("agenda-item-edit after add:", logAgendaItems);
     this.dataStorageService.storeAgendaItems();
 
     this.editMode = false;

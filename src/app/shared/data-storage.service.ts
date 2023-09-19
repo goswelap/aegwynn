@@ -18,28 +18,24 @@ export class DataStorageService {
    storeAgendaItems() {
       const agendaItems = this.agendaService.getAgendaItems();
       const userId = this.authService.getLocalId();
-      console.log("storing: ", agendaItems);
       this.http
          .put(
             `https://aegwynn-c7092-default-rtdb.firebaseio.com/${userId}/agendaItems.json`,
             agendaItems
          )
          .subscribe(response => {
-            console.log(response);
          });
    }
 
    storeCompletedItems() {
       const completedItems = this.agendaService.getCompletedItems();
       const userId = this.authService.getLocalId();
-      console.log("storing: ", completedItems);
       this.http
          .put(
             `https://aegwynn-c7092-default-rtdb.firebaseio.com/${userId}/completedItems.json`,
             completedItems
          )
          .subscribe(response => {
-            console.log(response);
          });
    }
 

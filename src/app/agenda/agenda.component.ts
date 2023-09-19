@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, Subject } from 'rxjs';
 
-import { AgendaItem } from './agenda-list/agenda-item/agenda-item.model';
 import { AgendaService } from '../shared/agenda.service';
 import { DataStorageService } from '../shared/data-storage.service';
 
@@ -11,8 +10,10 @@ import { DataStorageService } from '../shared/data-storage.service';
   templateUrl: './agenda.component.html',
   styleUrls: ['./agenda.component.css']
 })
-export class AgendaComponent implements OnInit {
+export class AgendaComponent implements OnInit, OnDestroy {
   displaySub!: Subscription;
+  fetchAgendaItemsSub!: Subscription;
+  fetchCompletedItemsSub!: Subscription;
   showCurrent: boolean = true;
 
   constructor(private agendaServ: AgendaService,
@@ -27,8 +28,8 @@ export class AgendaComponent implements OnInit {
         this.showCurrent = showCurrent;
       }
     )
-    this.dataStorageServ.fetchAgendaItems().subscribe();
-    this.dataStorageServ.fetchCompletedItems().subscribe();
+    this.fetchAgendaItemsSub = this.dataStorageServ.fetchAgendaItems().subscribe();
+    this.fetchCompletedItemsSub = this.dataStorageServ.fetchCompletedItems().subscribe();
   }
 
   onAddAgendaItem() {
@@ -36,7 +37,12 @@ export class AgendaComponent implements OnInit {
   }
 
   toggleDisplay() {
-    // this.displayCompleted = !this.displayCompleted;
     this.agendaServ.toggleDisplay();
+  }
+
+  ngOnDestroy() {
+    this.displaySub.unsubscribe();
+    this.fetchAgendaItemsSub.unsubscribe();
+    this.fetchCompletedItemsSub.unsubscribe();
   }
 }

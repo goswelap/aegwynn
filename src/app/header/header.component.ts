@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-// import { DataStorageService } from '../shared/data-storage.service';
 import { AuthService } from '../shared/auth.service';
 
 @Component({
@@ -17,7 +16,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
    showDropdown = false;
 
    constructor(
-      //  private dataStorageService: DataStorageService,
       private router: Router,
       private authService: AuthService
    ) { }

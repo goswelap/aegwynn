@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { AgendaItem } from '../agenda/agenda-list/agenda-item/agenda-item.model';
-// import { Ingredient } from './ingredient.model';
-// import { ShoppingListService } from './shopping-list.service';
 
 @Injectable({ providedIn: 'root' })
 export class AgendaService {
@@ -14,36 +12,6 @@ export class AgendaService {
   showCurrentValue: boolean = true;
   private agendaItems: AgendaItem[] = [];
   private completedItems: AgendaItem[] = [];
-
-  // private agendaItems: AgendaItem[] = [
-  //   new AgendaItem(
-  //     new Date(2023, 7, 27),
-  //     'Angular Application',
-  //     'Replace up arrow with gear icon'
-  //   ),
-  //   new AgendaItem(
-  //     new Date(2023, 7, 27),
-  //     'Angular Application',
-  //     'Add up / down arrows to agenda items to allow reordering'
-  //   ),
-  //   new AgendaItem(
-  //     new Date(2023, 7, 27),
-  //     'Angular Application',
-  //     'Add ability to delete / mark agenda items complete'
-  //   ),
-  //   new AgendaItem(
-  //     new Date(2023, 7, 27),
-  //     'Angular Application',
-  //     'Add \'current\' and \'compelted\' agenda item sections'
-  //   ),
-  // ];
-
-  // completedItems: AgendaItem[] = [
-  //   new AgendaItem(
-  //     new Date(2023, 7, 27),
-  //     'Angular Application',
-  //     'Style agenda items'
-  //   ),];
 
   constructor() { }
 
@@ -58,12 +26,10 @@ export class AgendaService {
   }
 
   getAgendaItems() {
-    console.log('getAgendaItems(): ', this.agendaItems);
     return this.agendaItems.slice();
   }
 
   getCompletedItems() {
-    console.log('getCompletedItems(): ', this.completedItems);
     return this.completedItems.slice();
   }
 
@@ -76,11 +42,8 @@ export class AgendaService {
   }
 
   addAgendaItem(agendaItem: AgendaItem) {
-    console.log('service adding: ', agendaItem);
     this.agendaItems.push(agendaItem);
-    console.log('service agendaItems: ', this.agendaItems);
     this.agendaItemsChanged.next(this.agendaItems.slice());
-    console.log('service agendaItemsChanged: ', this.agendaItemsChanged);
   }
 
   addCompletedItem(completedItem: AgendaItem) {

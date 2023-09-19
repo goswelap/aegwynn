@@ -32,11 +32,9 @@ export class AgendaListComponent implements OnInit, OnDestroy {
       .subscribe(
         (agendaItems: AgendaItem[]) => {
           this.agendaItems = agendaItems;
-          // console.log('agendaItems sub / agenda-list: ', this.agendaItems);
         }
       );
     this.agendaItems = this.agendaServ.getAgendaItems();
-    console.log('ngOnInit agenda-list: ', this.agendaItems);
     this.completedSub = this.agendaServ.completedItemsChanged
       .subscribe(
         (completedItems: AgendaItem[]) => {
@@ -73,11 +71,14 @@ export class AgendaListComponent implements OnInit, OnDestroy {
   editAgendaItem(index: number) {
     this.agendaServ.startedEditing.next(index);
   }
-  ngOnDestroy() {
-  }
 
   updateDB(){
     this.dataStorageServ.storeAgendaItems();
     this.dataStorageServ.storeCompletedItems();
+  }
+
+  ngOnDestroy() {
+    this.agendaSub.unsubscribe();
+    this.completedSub.unsubscribe();
   }
 }

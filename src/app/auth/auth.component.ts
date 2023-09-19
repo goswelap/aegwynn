@@ -4,9 +4,6 @@ import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 
 import { AuthService, AuthResponseData } from '../shared/auth.service';
-import { DataStorageService } from '../shared/data-storage.service';
-// import { AlertComponent } from '../shared/alert/alert.component';
-// import { PlaceholderDirective } from '../placeholder/placeholder.directive';
 
 @Component({
    selector: 'app-auth',
@@ -20,7 +17,6 @@ export class AuthComponent {
 
    constructor(
       private authService: AuthService,
-      private dataStorageService: DataStorageService,
       private router: Router
    ) { }
 
@@ -47,13 +43,10 @@ export class AuthComponent {
 
       authObs.subscribe(
          resData => {
-            console.log(resData);
             this.isLoading = false;
-            // this.dataStorageService.fetchAgendaItems().subscribe();
             this.router.navigate(['/agenda']);
          },
          errorMessage => {
-            console.log(errorMessage);
             this.error = errorMessage;
             this.isLoading = false;
          }

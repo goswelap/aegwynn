@@ -44,7 +44,7 @@ export class AuthComponent {
       authObs.subscribe(
          resData => {
             this.isLoading = false;
-            this.router.navigate(['/agenda']);
+            this.router.navigate(['/dashboard']);
          },
          errorMessage => {
             this.error = errorMessage;

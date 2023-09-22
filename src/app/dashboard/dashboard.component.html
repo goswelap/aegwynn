@@ -2,7 +2,9 @@
   <div class="assistant-header">
     <h4>Assistant</h4>
   </div>
-  <p>{{ response }}</p>
+  <div *ngFor="let message of getDialogue()">
+    <strong>{{ message.role }}:</strong> {{ message.content }}
+  </div>
 </div>
 
 <div class="input-container">

@@ -1,0 +1,31 @@
+<div class="new-item-container">
+  <form class="new-item-form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+    <div class="course-and-due-date">
+      <div class="course-input-container">
+        <label for="course">Course</label>
+        <input type="text" id="course" name="course" ngModel>
+      </div>
+
+      <div class="due-date-input-container">
+        <label for="due_date">Due Date</label>
+        <input type="date" id="due_date" name="due_date" ngModel required>
+      </div>
+    </div>
+
+
+    <div class="assignment-input-container">
+      <label for="assignment">Assignment</label>
+      <textarea id="assignment" name="assignment" ngModel required></textarea>
+    </div>
+
+    <div class="new-item-button-container">
+      <button class="btn btn-success" type="submit" [disabled]="!f.valid">{{ editMode ? 'Update' : 'Add'
+        }}</button>
+      <!-- <button class="btn btn-danger" type="button" (click)="onCancel()" *ngIf="editMode">Delete</button> -->
+      <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
+      <button class="btn btn-danger" type="button" (click)="onCancel()">Cancel</button>
+    </div>
+
+  </form>
+</div>

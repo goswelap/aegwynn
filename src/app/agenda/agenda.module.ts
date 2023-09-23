@@ -10,7 +10,7 @@ import { AgendaRoutingModule } from './agenda-routing.module';
 import { AgendaComponent } from './agenda.component';
 import { AgendaListComponent } from './agenda-list/agenda-list.component';
 import { AgendaItemComponent } from './agenda-list/agenda-item/agenda-item.component';
-import { AgendaItemEditComponent } from './agenda-item-edit/agenda-item-edit.component';
+import { NewItemComponent } from './new-item/new-item.component';
 import { AgendaService } from '../shared/agenda.service';
 // import { DataStorageService } from '../shared/data-storage.service';
 
@@ -20,7 +20,7 @@ import { AgendaService } from '../shared/agenda.service';
     AgendaComponent,
     AgendaListComponent,
     AgendaItemComponent,
-    AgendaItemEditComponent
+    NewItemComponent
   ],
   imports: [
     CommonModule,

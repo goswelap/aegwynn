@@ -1,0 +1,63 @@
+input,
+textarea {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  border-radius: 7px;
+  border-width: 3px;
+  border-style: double;
+  border-color: white;
+  padding: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 10px white;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+label {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.new-item-container {
+  position: relative;
+  display: flex;
+  width: auto;
+  justify-content: center;
+  /* width: 50rem; */
+}
+
+.course-and-due-date {
+  display: flex;
+  /* justify-content: flex-end; */
+  /* gap: 10px;  Adds spacing between the buttons */
+}
+
+
+.assignment-input-container,
+.due-date-input-container,
+.course-input-container {
+  margin: 0.5rem;
+  margin-left: 0rem;
+}
+
+.new-item-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}

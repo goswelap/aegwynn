@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AgendaComponent } from './agenda.component';
-import { AgendaItemEditComponent } from './agenda-item-edit/agenda-item-edit.component';
+import { NewItemComponent } from './new-item/new-item.component';
 import { AgendaResolverService } from '../shared/agenda-resolver.service';
 import { AuthGuard } from '../auth/auth.guard';
 
@@ -13,10 +13,10 @@ const routes: Routes = [
     component: AgendaComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'new', component: AgendaItemEditComponent },
+      { path: 'new', component: NewItemComponent },
       {
         path: ':id/edit',
-        component: AgendaItemEditComponent,
+        component: NewItemComponent,
         resolve: [AgendaResolverService]
       }
     ]

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AssistantComponent } from '../src/app/assistant/assistant.component';
+import { AssistantComponent } from '../src/app/dashboard/assistant/assistant.component';
 
 describe('AssistantComponent', () => {
   let component: AssistantComponent;

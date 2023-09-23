@@ -18,6 +18,7 @@ export class OpenaiService {
 
   prompt(userMessage: string): Observable<string> {
     console.log("prompting: " + userMessage);
+    this.conversation['user'].push(userMessage);
     return this.http.post<{ response: string }>(this.serverEndpoint, { conversation: this.conversation }).pipe(
       map(resp => {
         console.log(resp.response);

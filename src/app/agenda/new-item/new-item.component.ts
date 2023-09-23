@@ -10,11 +10,11 @@ import { DataStorageService } from '../../shared/data-storage.service';
 
 
 @Component({
-  selector: 'app-agenda-item-edit',
-  templateUrl: './agenda-item-edit.component.html',
-  styleUrls: ['./agenda-item-edit.component.css']
+  selector: 'app-new-item',
+  templateUrl: './new-item.component.html',
+  styleUrls: ['./new-item.component.css']
 })
-export class AgendaItemEditComponent implements OnInit {
+export class NewItemComponent implements OnInit {
   @ViewChild('f', { static: false }) agendaForm!: NgForm;
   editSub!: Subscription;
   editMode: boolean = false;
@@ -54,6 +54,7 @@ export class AgendaItemEditComponent implements OnInit {
 
     this.editMode = false;
     form.reset();
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 
   onClear() {

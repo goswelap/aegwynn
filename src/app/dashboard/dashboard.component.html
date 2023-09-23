@@ -1,14 +1,5 @@
-<div class="assistant-container">
-  <div class="assistant-header">
-    <h4>Assistant</h4>
-  </div>
-  <div *ngFor="let message of getDialogue()">
-    <strong>{{ message.role }}:</strong> {{ message.content }}
-  </div>
+<div class="title-container">
+  <h4>Assistant</h4>
 </div>
 
-<div class="input-container">
-  <!-- <input type="text" id="course" class="form-control" name="course" ngModel> -->
-  <input type="text" [(ngModel)]="userMessage" class="form-control">
-  <button class="btn btn-primary" (click)="send()"><i class="bi bi-send"></i></button>
-</div>
+<app-assistant></app-assistant>

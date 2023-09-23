@@ -11,6 +11,7 @@ import { NavComponent } from './header/nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './dashboard/settings/settings.component';
 import { OpenaiService } from './shared/openai.service';
+import { AssistantComponent } from './dashboard/assistant/assistant.component';
 
 @NgModule({
    declarations: [
@@ -19,7 +20,8 @@ import { OpenaiService } from './shared/openai.service';
       DashboardComponent,
       NavComponent,
       HomeComponent,
-      SettingsComponent
+      SettingsComponent,
+      AssistantComponent
       ],
    imports: [
       BrowserModule,

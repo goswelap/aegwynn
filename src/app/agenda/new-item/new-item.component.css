@@ -12,7 +12,7 @@ textarea,
   height: 3rem;
   width: 100%;
   font-size: 1rem;
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 0.5rem; */
 }
 
 input:focus,
@@ -136,6 +136,7 @@ button {
   box-shadow: 0 0 10px white;
 }
 
+.reset-course-button,
 .course-item button {
   background-color: maroon;
   color: white;
@@ -149,6 +150,20 @@ button {
   margin-right: 5px;
 }
 
+.reset-course-button:hover,
 .course-item button:hover {
   background-color: rgb(220, 0, 0);
+}
+
+.new-course-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.reset-course-button {
+  position: absolute;
+  right: 5px;
+  /* top: 50%; */
+  /* transform: translateY(-50%); */
 }

@@ -7,13 +7,12 @@
         <label for="course">Course</label>
         <!-- <div *ngIf="!addNewCourse; else newCourseInput"> -->
         <div *ngIf="!addNewCourse; else newCourseInput">
-          <div class="course-list-dropdown" (click)="toggleDropdown()">
-
-            {{ selectedCourse || 'Choose a course' }} <i *ngIf="!selectedCourse" class="bi bi-caret-down"></i>
+          <div class="course-list-dropdown" (click)="toggleDropdown()"
+            [ngStyle]="dropdownOpen ? {'box-shadow': '0 0 10px white'} : {}">
+            {{ selectedCourse || 'Choose a course' }}
+            <i *ngIf="!selectedCourse" class="bi bi-caret-down"></i>
           </div>
           <input type="hidden" name="course" [(ngModel)]="selectedCourse">
-
-
 
           <div *ngIf="dropdownOpen" class="course-list">
             <div *ngFor="let course of courses" class="course-item" (click)="onCourseSelected(course)">
@@ -24,22 +23,14 @@
           </div>
         </div>
 
-        <!-- <div class="course-input-container"> -->
-        <!-- <label for="course">Course</label> -->
-        <!-- <div *ngIf="!addNewCourse; else newCourseInput">
-          <select id="course" name="course" [(ngModel)]="selectedCourse" (change)="onCourseChange()">
-            <option *ngFor="let course of courses" [value]="course">{{ course }}
-              <button class="remove-course-button" (click)="onRemoveCourse(course)">Remove</button>
-            </option>
-            <option value="addNew">Add New</option>
-          </select>
-        </div> -->
         <ng-template #newCourseInput>
-          <div>
+          <div class="new-course-input-container">
             <input type="text" name="newCourse" placeholder="Enter new course" [(ngModel)]="newCourse">
-            <span class="close-icon" (click)="resetCourseInput()">x</span>
+            <button class="reset-course-button" (click)="resetCourseInput()">x</button>
           </div>
         </ng-template>
+
+
         <!-- <input type="text" id="course" name="course" ngModel> -->
       </div>
 

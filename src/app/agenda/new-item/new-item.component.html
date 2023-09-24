@@ -5,12 +5,35 @@
 
       <div class="course-input-container">
         <label for="course">Course</label>
+        <!-- <div *ngIf="!addNewCourse; else newCourseInput"> -->
         <div *ngIf="!addNewCourse; else newCourseInput">
+          <div class="course-list-dropdown" (click)="toggleDropdown()">
+
+            {{ selectedCourse || 'Choose a course' }} <i *ngIf="!selectedCourse" class="bi bi-caret-down"></i>
+          </div>
+          <input type="hidden" name="course" [(ngModel)]="selectedCourse">
+
+
+
+          <div *ngIf="dropdownOpen" class="course-list">
+            <div *ngFor="let course of courses" class="course-item" (click)="onCourseSelected(course)">
+              <span>{{ course }}</span>
+              <button (click)="onRemoveCourse(course); $event.stopPropagation();">x</button>
+            </div>
+            <div class="course-item" (click)="onAddCourse()">Add New</div>
+          </div>
+        </div>
+
+        <!-- <div class="course-input-container"> -->
+        <!-- <label for="course">Course</label> -->
+        <!-- <div *ngIf="!addNewCourse; else newCourseInput">
           <select id="course" name="course" [(ngModel)]="selectedCourse" (change)="onCourseChange()">
-            <option *ngFor="let course of courses" [value]="course">{{ course }}</option>
+            <option *ngFor="let course of courses" [value]="course">{{ course }}
+              <button class="remove-course-button" (click)="onRemoveCourse(course)">Remove</button>
+            </option>
             <option value="addNew">Add New</option>
           </select>
-        </div>
+        </div> -->
         <ng-template #newCourseInput>
           <div>
             <input type="text" name="newCourse" placeholder="Enter new course" [(ngModel)]="newCourse">

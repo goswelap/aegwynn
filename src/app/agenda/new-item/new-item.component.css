@@ -1,5 +1,6 @@
 input,
-textarea {
+textarea,
+.course-list-dropdown {
   color: white;
   background-color: rgba(0, 0, 0, 0.6) !important;
   border-radius: 7px;
@@ -25,25 +26,17 @@ textarea::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
-select {
-  color: white;
-  background-color: rgba(0, 0, 0, 0.6) !important;
-  border-radius: 7px;
-  border-width: 3px;
-  border-style: double;
-  border-color: white;
-  padding: 0.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: 3rem;
-  width: 100%;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-select:focus {
+.course-list-dropdown:focus {
   outline: none;
   box-shadow: 0 0 10px white;
 }
+
+.course-list {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+}
+
 
 label {
   color: white;
@@ -68,6 +61,9 @@ label {
 }
 
 .course-input-container {
+  /* background-color: black; */
+  /* color: white; */
+  position: relative;
   margin: 0.5rem;
   margin-left: 0;
   width: 12rem;
@@ -91,6 +87,13 @@ label {
   vertical-align: middle;
 }
 
+.remove-course-button {
+  color: maroon;
+  cursor: pointer;
+  margin-left: 0.2rem;
+  vertical-align: middle;
+}
+
 .new-item-button-container {
   display: flex;
   justify-content: center;
@@ -99,4 +102,53 @@ label {
 button {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+}
+
+.course-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0px 4px 4px;
+  cursor: pointer;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  /* width: 200px; */
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: black;
+  color: white;
+
+  width: auto;
+  /* max-width: 180px; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.course-list-dropdown:hover,
+.course-item:hover {
+  cursor: pointer;
+  /* box-shadow: 0 0 10px white; */
+}
+
+.course-item:hover {
+  box-shadow: 0 0 10px white;
+}
+
+.course-item button {
+  background-color: maroon;
+  color: white;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  font-size: 12px;
+  cursor: pointer;
+  margin: 0px;
+  margin-right: 5px;
+}
+
+.course-item button:hover {
+  background-color: rgb(220, 0, 0);
 }

@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
-
 
 import { AgendaItem } from '../agenda-list/agenda-item/agenda-item.model';
 import { AgendaService } from '../../shared/agenda.service';
@@ -18,6 +17,7 @@ export class NewItemComponent implements OnInit {
   @ViewChild('f', { static: false }) agendaForm!: NgForm;
   editSub!: Subscription;
   fetchCoursesSub!: Subscription;
+  dropdownOpen: boolean = false;
   editMode: boolean = false;
   editedItemIndex!: number;
   editedItem!: AgendaItem;
@@ -28,6 +28,7 @@ export class NewItemComponent implements OnInit {
   newCourse: String = '';
 
   constructor(private agendaServ: AgendaService,
+    private elRef: ElementRef,
     private dataStorageService: DataStorageService,
     private router: Router,
     private route: ActivatedRoute) { }
@@ -55,7 +56,6 @@ export class NewItemComponent implements OnInit {
     );
 
     this.fetchCoursesSub = this.dataStorageService.fetchCourses().subscribe();
-
     console.log(this.courses);
   }
 
@@ -105,6 +105,37 @@ export class NewItemComponent implements OnInit {
 
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  onCourseSelected(course: String) {
+    this.selectedCourse = course;
+    this.closeDropdown();
+  }
+
+  onAddCourse() {
+    this.addNewCourse = true;
+  }
+
+  onRemoveCourse(courseName: String) {
+    this.agendaServ.removeCourse(courseName);
+    this.dataStorageService.storeCourses();
+  }
+
+  toggleDropdown() {
+    console.log("toggle");
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  closeDropdown() {
+    this.dropdownOpen = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const clickedInside = this.elRef.nativeElement.contains(event.target);
+    if (!clickedInside) {
+      this.closeDropdown();
+    }
   }
 
   updateDB() {

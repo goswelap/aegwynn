@@ -60,11 +60,7 @@ export class DataStorageService {
          )
          .pipe(
             map(courses => {
-               return courses.map(course => {
-                  return {
-                     ...course
-                  };
-               });
+               return courses ? courses : [];
             }),
             tap(courses => {
                console.log("data-storage.service: fetch -> set courses:", courses)

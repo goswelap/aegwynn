@@ -128,4 +128,13 @@ export class AgendaService {
     this.completedItems.splice(index, 1);
     this.completedItemsChanged.next(this.completedItems.slice());
   }
+
+  removeCourse(courseName: String) {
+    const index = this.courses.indexOf(courseName);
+    if (index !== -1) {
+        this.courses.splice(index, 1);
+        this.coursesChanged.next(this.courses);
+    }
+}
+
 }

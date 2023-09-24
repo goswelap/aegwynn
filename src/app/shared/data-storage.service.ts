@@ -15,6 +15,19 @@ export class DataStorageService {
       private authService: AuthService
    ) { }
 
+   storeCourses() {
+      const courses = this.agendaService.getCourses();
+      const userId = this.authService.getLocalId();
+      console.log("data-storage.service.ts: storeCourses()", courses, userId)
+      this.http
+         .put(
+            `https://aegwynn-c7092-default-rtdb.firebaseio.com/${userId}/courses.json`,
+            courses
+         )
+         .subscribe(response => {
+         });
+   }
+
    storeAgendaItems() {
       const agendaItems = this.agendaService.getAgendaItems();
       const userId = this.authService.getLocalId();
@@ -37,6 +50,27 @@ export class DataStorageService {
          )
          .subscribe(response => {
          });
+   }
+
+   fetchCourses() {
+      const userId = this.authService.getLocalId();
+      return this.http
+         .get<String[]>(
+            `https://aegwynn-c7092-default-rtdb.firebaseio.com/${userId}/courses.json`
+         )
+         .pipe(
+            map(courses => {
+               return courses.map(course => {
+                  return {
+                     ...course
+                  };
+               });
+            }),
+            tap(courses => {
+               console.log("data-storage.service: fetch -> set courses:", courses)
+               this.agendaService.setCourses(courses);
+            })
+         );
    }
 
    fetchAgendaItems() {

@@ -8,6 +8,7 @@ textarea {
   border-color: white;
   padding: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 3rem;
   width: 100%;
   font-size: 1rem;
   margin-bottom: 0.5rem;
@@ -24,6 +25,26 @@ textarea::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
+select {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  border-radius: 7px;
+  border-width: 3px;
+  border-style: double;
+  border-color: white;
+  padding: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 3rem;
+  width: 100%;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+select:focus {
+  outline: none;
+  box-shadow: 0 0 10px white;
+}
+
 label {
   color: white;
   font-weight: bold;
@@ -35,21 +56,39 @@ label {
   display: flex;
   width: auto;
   justify-content: center;
-  /* width: 50rem; */
+}
+
+.new-item-form {
+  width: 25rem;
 }
 
 .course-and-due-date {
   display: flex;
-  /* justify-content: flex-end; */
-  /* gap: 10px;  Adds spacing between the buttons */
+  justify-content: center;
 }
 
-
-.assignment-input-container,
-.due-date-input-container,
 .course-input-container {
   margin: 0.5rem;
-  margin-left: 0rem;
+  margin-left: 0;
+  width: 12rem;
+}
+
+.due-date-input-container {
+  margin: 0.5rem;
+  margin-right: 0;
+  width: 18rem;
+}
+
+.assignment-input-container {
+  width: 25rem;
+  margin: auto;
+}
+
+.close-icon {
+  color: maroon;
+  cursor: pointer;
+  margin-left: 5px;
+  vertical-align: middle;
 }
 
 .new-item-button-container {

@@ -17,14 +17,22 @@ import { DataStorageService } from '../../shared/data-storage.service';
 export class NewItemComponent implements OnInit {
   @ViewChild('f', { static: false }) agendaForm!: NgForm;
   editSub!: Subscription;
+  fetchCoursesSub!: Subscription;
   editMode: boolean = false;
   editedItemIndex!: number;
   editedItem!: AgendaItem;
+
+  courses: String[] = [];
+  selectedCourse: String = '';
+  addNewCourse: boolean = false;
+  newCourse: String = '';
 
   constructor(private agendaServ: AgendaService,
     private dataStorageService: DataStorageService,
     private router: Router,
     private route: ActivatedRoute) { }
+
+
   ngOnInit() {
     this.editSub = this.agendaServ.startedEditing.subscribe(
       (index: number) => {
@@ -38,11 +46,36 @@ export class NewItemComponent implements OnInit {
         });
       }
     );
+
+    this.agendaServ.coursesChanged.subscribe(
+      (courses: String[]) => {
+        console.log("coursesChanged.subscribe()", courses)
+        this.courses = courses;
+      }
+    );
+
+    this.fetchCoursesSub = this.dataStorageService.fetchCourses().subscribe();
+
+    console.log(this.courses);
+  }
+
+  onCourseChange() {
+    if (this.selectedCourse === 'addNew') {
+      this.addNewCourse = true;
+    } else {
+      this.addNewCourse = false;
+    }
+  }
+
+  resetCourseInput() {
+    this.addNewCourse = false;
+    this.selectedCourse = '';
+    this.newCourse = '';
   }
 
   onSubmit(form: NgForm) {
     const value = form.value;
-    const newAgendaItem = new AgendaItem(value.due_date, value.course, value.assignment);
+    const newAgendaItem = new AgendaItem(value.due_date, value.course || value.newCourse, value.assignment);
     if (this.editMode) {
       this.agendaServ.updateAgendaItem(this.editedItemIndex, newAgendaItem);
     } else {
@@ -51,10 +84,18 @@ export class NewItemComponent implements OnInit {
     }
     const logAgendaItems = this.agendaServ.getAgendaItems();
     this.dataStorageService.storeAgendaItems();
+    this.dataStorageService.storeCompletedItems();
+
+    if (this.addNewCourse) {
+      console.log("new-item.component.ts: onSubmit(): addNewCourse", newAgendaItem.course)
+      this.agendaServ.addCourse(newAgendaItem.course);
+      this.dataStorageService.storeCourses();
+      this.addNewCourse = false;
+    }
 
     this.editMode = false;
     form.reset();
-    this.router.navigate(['../'], { relativeTo: this.route });
+    this.onCancel();
   }
 
   onClear() {
@@ -69,5 +110,6 @@ export class NewItemComponent implements OnInit {
   updateDB() {
     this.dataStorageService.storeAgendaItems();
     this.dataStorageService.storeCompletedItems();
+    this.dataStorageService.storeCourses();
   }
 }

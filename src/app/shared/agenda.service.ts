@@ -7,11 +7,13 @@ import { AgendaItem } from '../agenda/agenda-list/agenda-item/agenda-item.model'
 export class AgendaService {
   agendaItemsChanged = new Subject<AgendaItem[]>();
   completedItemsChanged = new Subject<AgendaItem[]>();
+  coursesChanged = new Subject<String[]>();
   startedEditing = new Subject<number>();
   showCurrent = new Subject<boolean>();
   showCurrentValue: boolean = true;
   private agendaItems: AgendaItem[] = [];
   private completedItems: AgendaItem[] = [];
+  private courses: String[] = [];
 
   constructor() { }
 
@@ -35,6 +37,12 @@ export class AgendaService {
     this.completedItemsChanged.next(this.completedItems.slice());
   }
 
+  setCourses(courses: String[]) {
+    console.log("agenda.service.ts: setCourses: courses = " + courses)
+    this.courses = courses;
+    this.coursesChanged.next(this.courses);
+  }
+
   getAgendaItems() {
     return this.agendaItems.slice();
   }
@@ -51,6 +59,10 @@ export class AgendaService {
     return this.completedItems[index];
   }
 
+  getCourses() {
+    return this.courses;
+  }
+
   addAgendaItem(agendaItem: AgendaItem) {
     this.agendaItems.push(agendaItem);
     this.sortAgendaItems();
@@ -61,6 +73,12 @@ export class AgendaService {
     this.completedItems.push(completedItem);
     this.sortCompletedItems();
     this.completedItemsChanged.next(this.completedItems.slice());
+  }
+
+  addCourse(course: String) {
+    console.log("agenda.service.ts: addCourse: course = " + course);
+    this.courses.push(course);
+    this.coursesChanged.next(this.courses);
   }
 
   toggleDisplay() {

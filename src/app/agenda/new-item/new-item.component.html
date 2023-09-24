@@ -2,15 +2,29 @@
   <form class="new-item-form" (ngSubmit)="onSubmit(f)" #f="ngForm">
 
     <div class="course-and-due-date">
+
       <div class="course-input-container">
         <label for="course">Course</label>
-        <input type="text" id="course" name="course" ngModel>
+        <div *ngIf="!addNewCourse; else newCourseInput">
+          <select id="course" name="course" [(ngModel)]="selectedCourse" (change)="onCourseChange()">
+            <option *ngFor="let course of courses" [value]="course">{{ course }}</option>
+            <option value="addNew">Add New</option>
+          </select>
+        </div>
+        <ng-template #newCourseInput>
+          <div>
+            <input type="text" name="newCourse" placeholder="Enter new course" [(ngModel)]="newCourse">
+            <span class="close-icon" (click)="resetCourseInput()">x</span>
+          </div>
+        </ng-template>
+        <!-- <input type="text" id="course" name="course" ngModel> -->
       </div>
 
       <div class="due-date-input-container">
         <label for="due_date">Due Date</label>
         <input type="date" id="due_date" name="due_date" ngModel required>
       </div>
+
     </div>
 
 

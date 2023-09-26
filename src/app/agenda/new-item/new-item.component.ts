@@ -50,13 +50,11 @@ export class NewItemComponent implements OnInit {
 
     this.agendaServ.coursesChanged.subscribe(
       (courses: String[]) => {
-        console.log("coursesChanged.subscribe()", courses)
         this.courses = courses;
       }
     );
 
     this.fetchCoursesSub = this.dataStorageService.fetchCourses().subscribe();
-    console.log(this.courses);
   }
 
   onCourseChange() {
@@ -87,7 +85,6 @@ export class NewItemComponent implements OnInit {
     this.dataStorageService.storeCompletedItems();
 
     if (this.addNewCourse) {
-      console.log("new-item.component.ts: onSubmit(): addNewCourse", newAgendaItem.course)
       this.agendaServ.addCourse(newAgendaItem.course);
       this.dataStorageService.storeCourses();
       this.addNewCourse = false;
@@ -122,7 +119,6 @@ export class NewItemComponent implements OnInit {
   }
 
   toggleDropdown() {
-    console.log("toggle");
     this.dropdownOpen = !this.dropdownOpen;
   }
 

@@ -4,6 +4,7 @@ import { OnInit } from '@angular/core';
 import { OpenaiService } from '../../shared/openai.service';
 
 import { Conversation } from '../../shared/conversation.model';
+import { ConversationService } from '../../shared/conversation.service';
 
 @Component({
   selector: 'app-assistant',
@@ -16,19 +17,33 @@ export class AssistantComponent implements OnInit {
   userMessage = '';
   response = '';
 
-  constructor(private openaiService: OpenaiService) { }
+  constructor(
+    private openaiService: OpenaiService,
+    private conversationService: ConversationService
+  ) { }
 
   ngOnInit() {
-    this.conversationSub = this.openaiService.convo.subscribe(convo => {
-      this.conversation = convo;
+    this.conversation = this.conversationService.getConversation();
+    this.conversationService.conversationChanged.subscribe(newConversation => {
+      this.conversation = newConversation;
     });
+    // this.conversationSub = this.openaiService.convo.subscribe(convo => {
+    //   this.conversation = convo;
+    // });
   }
 
   send() {
-    this.conversation.user.push(this.userMessage);
+    this.conversationService.addUserMessage(this.userMessage);
     this.openaiService.prompt(this.userMessage).subscribe(response => {
       this.response = response;
+      this.conversationService.addAssistantMessage(this.response);
     });
+
+    // this.conversation.user.push(this.userMessage);
+    // this.openaiService.prompt(this.userMessage).subscribe(response => {
+    //   this.response = response;
+    // });
+    // this.conversationService.updateConversation(this.conversation);
   }
 
   getDialogue(): { role: string, content: string }[] {

@@ -18,7 +18,6 @@ export class DataStorageService {
    storeCourses() {
       const courses = this.agendaService.getCourses();
       const userId = this.authService.getLocalId();
-      console.log("data-storage.service.ts: storeCourses()", courses, userId)
       this.http
          .put(
             `https://aegwynn-c7092-default-rtdb.firebaseio.com/${userId}/courses.json`,
@@ -63,7 +62,6 @@ export class DataStorageService {
                return courses ? courses : [];
             }),
             tap(courses => {
-               console.log("data-storage.service: fetch -> set courses:", courses)
                this.agendaService.setCourses(courses);
             })
          );

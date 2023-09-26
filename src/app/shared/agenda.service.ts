@@ -38,7 +38,6 @@ export class AgendaService {
   }
 
   setCourses(courses: String[]) {
-    console.log("agenda.service.ts: setCourses: courses = " + courses)
     this.courses = courses;
     this.coursesChanged.next(this.courses);
   }
@@ -76,7 +75,6 @@ export class AgendaService {
   }
 
   addCourse(course: String) {
-    console.log("agenda.service.ts: addCourse: course = " + course);
     this.courses.push(course);
     this.coursesChanged.next(this.courses);
   }

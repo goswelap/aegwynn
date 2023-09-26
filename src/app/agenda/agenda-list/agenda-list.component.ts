@@ -71,7 +71,6 @@ export class AgendaListComponent implements OnInit, OnDestroy {
   editAgendaItem(index: number) {
     this.agendaServ.startedEditing.next(index);
     this.router.navigate([`${index}/edit`], { relativeTo: this.route });
-
   }
 
   updateDB() {

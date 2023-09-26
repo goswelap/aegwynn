@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, ReplaySubject } from 'rxjs';
 
 import { AgendaItem } from '../agenda/agenda-list/agenda-item/agenda-item.model';
 
@@ -8,7 +8,12 @@ export class AgendaService {
   agendaItemsChanged = new Subject<AgendaItem[]>();
   completedItemsChanged = new Subject<AgendaItem[]>();
   coursesChanged = new Subject<String[]>();
-  startedEditing = new Subject<number>();
+  // startedEditing = new Subject<number>();
+  startedEditing = new ReplaySubject<number>(1);
+  resetForm = new Subject<void>();
+  // resetForm = new ReplaySubject<void>(1);
+
+
   showCurrent = new Subject<boolean>();
   showCurrentValue: boolean = true;
   private agendaItems: AgendaItem[] = [];

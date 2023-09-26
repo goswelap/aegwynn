@@ -24,3 +24,21 @@
   font-size: 2rem;
   color: white;
 }
+
+.add-new-btn {
+  background-color: black;
+  border-color: white;
+  border-radius: 0.3rem;
+  color: white;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+.display-btn {
+  background-color: black;
+  border-color: white;
+  border-radius: 0.3rem;
+  color: white;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}

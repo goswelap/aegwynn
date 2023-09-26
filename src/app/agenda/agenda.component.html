@@ -5,10 +5,10 @@
       {{ showCurrent ? 'Current' : 'Completed'}}
     </div>
     <div class="button-container">
-      <button (click)="onAddAgendaItem()">
+      <button class="add-new-btn" (click)="onAddAgendaItem()">
         <i class="bi-plus-lg"></i>
       </button>
-      <button (click)="toggleDisplay()">
+      <button class="display-btn" (click)="toggleDisplay()">
         {{ !showCurrent ? 'Show Current' : 'Show Completed' }}
       </button>
     </div>

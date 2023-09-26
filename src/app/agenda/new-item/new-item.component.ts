@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, ElementRef, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
@@ -35,26 +35,57 @@ export class NewItemComponent implements OnInit {
 
 
   ngOnInit() {
-    this.editSub = this.agendaServ.startedEditing.subscribe(
-      (index: number) => {
-        this.editMode = false;
-        this.editedItemIndex = index;
-        this.editedItem = this.agendaServ.getAgendaItem(index);
-        this.agendaForm.setValue({
-          due_date: this.editedItem.due_date,
-          course: this.editedItem.course,
-          assignment: this.editedItem.assignment
-        });
-      }
-    );
+    // this.onClear(this.agendaForm);
+    this.route.params.subscribe(params => {
+      setTimeout(() => {
+        console.log("params: ", params);
+        if (params['id']) {
+          this.editMode = true;
+          this.editedItemIndex = +params['id']; // convert to num
+          this.editedItem = this.agendaServ.getAgendaItem(this.editedItemIndex);
+          this.agendaForm.setValue({
+            due_date: this.editedItem.due_date,
+            course: this.editedItem.course,
+            assignment: this.editedItem.assignment
+          });
+        } else {
+          this.editMode = false;
+          this.agendaForm.reset();
+        }
+      });
 
-    this.agendaServ.coursesChanged.subscribe(
-      (courses: String[]) => {
-        this.courses = courses;
-      }
-    );
+      this.agendaServ.coursesChanged.subscribe(
+        (courses: String[]) => {
+          this.courses = courses;
+        }
+      );
 
-    this.fetchCoursesSub = this.dataStorageService.fetchCourses().subscribe();
+      this.fetchCoursesSub = this.dataStorageService.fetchCourses().subscribe();
+    });
+    // this.editSub = this.agendaServ.startedEditing.subscribe(
+    //   (index: number) => {
+    //     console.log("edit subscription called");
+
+    //     this.editMode = true;
+    //     this.editedItemIndex = index;
+    //     this.editedItem = this.agendaServ.getAgendaItem(index);
+    //     setTimeout(() => {
+    //       this.agendaForm.setValue({
+    //         due_date: this.editedItem.due_date,
+    //         course: this.editedItem.course,
+    //         assignment: this.editedItem.assignment
+    //       });
+    //     });
+    //   }
+    // );
+
+    // this.agendaServ.resetForm.subscribe(() => {
+    //   setTimeout(() => {
+    //     console.log("reset form subscription called");
+    //     this.onClear(this.agendaForm);
+    //     this.editMode = false;
+    //   });
+    // });
   }
 
   onCourseChange() {
@@ -80,7 +111,7 @@ export class NewItemComponent implements OnInit {
       this.agendaServ.addAgendaItem(newAgendaItem);
       this.updateDB();
     }
-    const logAgendaItems = this.agendaServ.getAgendaItems();
+
     this.dataStorageService.storeAgendaItems();
     this.dataStorageService.storeCompletedItems();
 
@@ -95,13 +126,14 @@ export class NewItemComponent implements OnInit {
     this.onCancel();
   }
 
-  onClear() {
-    this.agendaForm.reset();
+  onClear(form: NgForm) {
     this.editMode = false;
+    form.reset();
   }
 
   onCancel() {
-    this.router.navigate(['../'], { relativeTo: this.route });
+    this.onClear(this.agendaForm);
+    this.router.navigate(['/agenda']);
   }
 
   onCourseSelected(course: String) {

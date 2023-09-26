@@ -33,6 +33,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
   }
 
   onAddAgendaItem() {
+    this.agendaServ.resetForm.next();
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 

@@ -41,7 +41,7 @@ p {
 }
 
 .remove-btn {
-  background-color: red;
+  background-color: maroon;
   color: white;
   border-radius: 5px;
   padding: 5px 10px;
@@ -49,4 +49,21 @@ p {
   position: absolute;
   bottom: 2px;
   right: 0px;
+}
+
+.edit-btn {
+  background-color: navy;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 2px;
+  right: 45px;
+}
+
+.mark-complete-btn:hover,
+.remove-btn:hover,
+.edit-btn:hover {
+  box-shadow: 0 0 10px white;
 }

@@ -1,11 +1,11 @@
 <div *ngIf="showCurrent; else showCompleted">
   <app-agenda-item *ngFor="let agendaItem of agendaItems; let i = index" [showCurrent]="showCurrent"
-    [agendaItem]="agendaItem" [index]="i" (toggleCompletion)="toggleItemCompletion(i)"
+    [agendaItem]="agendaItem" [index]="i" (toggleCompletion)="toggleItemCompletion(i)" (editItem)="editAgendaItem(i)"
     (deleteItem)="deleteAgendaItem(i)"></app-agenda-item>
 </div>
 
 <ng-template #showCompleted>
   <app-agenda-item *ngFor="let completedItem of completedItems; let i = index" [showCurrent]="showCurrent"
-    [agendaItem]="completedItem" [index]="i" (toggleCompletion)="toggleItemCompletion(i)"
+    [agendaItem]="completedItem" [index]="i" (toggleCompletion)="toggleItemCompletion(i)" (editItem)="editAgendaItem(i)"
     (deleteItem)="deleteAgendaItem(i)"></app-agenda-item>
 </ng-template>

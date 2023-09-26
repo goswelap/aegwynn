@@ -15,6 +15,10 @@
 
   </div>
   <p>- {{ agendaItem.assignment }}</p>
+  <button (click)="onEdit()" class="edit-btn">
+    <i class="bi-pencil"></i>
+  </button>
+
   <button (click)="onDelete()" class="remove-btn">
     <i class="bi-trash"></i>
   </button>

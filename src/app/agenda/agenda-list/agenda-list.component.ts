@@ -41,7 +41,7 @@ export class AgendaListComponent implements OnInit, OnDestroy {
           this.completedItems = completedItems;
         }
       );
-      this.completedItems = this.agendaServ.getCompletedItems();
+    this.completedItems = this.agendaServ.getCompletedItems();
 
     this.displaySub = this.agendaServ.showCurrent.subscribe(
       (showCurrent: boolean) => {
@@ -70,9 +70,11 @@ export class AgendaListComponent implements OnInit, OnDestroy {
 
   editAgendaItem(index: number) {
     this.agendaServ.startedEditing.next(index);
+    this.router.navigate([`${index}/edit`], { relativeTo: this.route });
+
   }
 
-  updateDB(){
+  updateDB() {
     this.dataStorageServ.storeAgendaItems();
     this.dataStorageServ.storeCompletedItems();
   }

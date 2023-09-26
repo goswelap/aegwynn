@@ -9,9 +9,10 @@ import { AgendaItem } from './agenda-item.model';
 })
 export class AgendaItemComponent implements OnInit {
   @Output() toggleCompletion = new EventEmitter<void>();
+  @Output() editItem = new EventEmitter<void>();
   @Output() deleteItem = new EventEmitter<void>();
-  @Input() showCurrent!: boolean;
 
+  @Input() showCurrent!: boolean;
   @Input() agendaItem!: AgendaItem;
   @Input() index!: number;
 
@@ -21,6 +22,10 @@ export class AgendaItemComponent implements OnInit {
 
   toggleItemCompletion() {
     this.toggleCompletion.emit();
+  }
+
+  onEdit() {
+    this.editItem.emit();
   }
 
   onDelete() {

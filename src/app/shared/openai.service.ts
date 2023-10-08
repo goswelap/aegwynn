@@ -10,6 +10,7 @@ import { AgendaService } from '../shared/agenda.service';
 @Injectable()
 export class OpenaiService {
   private serverEndpoint = 'http://134.209.65.11:3000/openai-prompt';
+  private dataHandler = 'http://134.209.65.11:3000/agenda-item-handler';
   conversation: { 'user': string[], 'assistant': string[] } = { 'user': [], 'assistant': [] };
   convo = new Subject<Conversation>();
   agendaSub!: Subscription;
@@ -19,24 +20,35 @@ export class OpenaiService {
   completedItems: AgendaItem[] = [];
 
   constructor(private http: HttpClient, private agendaServ: AgendaService) {
+    this.agendaItems = this.agendaServ.getAgendaItems();
+    this.completedItems = this.agendaServ.getCompletedItems();
+
     this.agendaSub = this.agendaServ.agendaItemsChanged
       .subscribe(
         (agendaItems: AgendaItem[]) => {
           this.agendaItems = agendaItems;
+          this.postAgendaItems().subscribe(
+            response => console.log('Agenda items posted successfully'),
+            error => console.error('Error:', error)
+          );
         }
       );
-    this.agendaItems = this.agendaServ.getAgendaItems();
+
     this.completedSub = this.agendaServ.completedItemsChanged
       .subscribe(
         (completedItems: AgendaItem[]) => {
           this.completedItems = completedItems;
+          this.postCompletedItems().subscribe(
+            response => console.log('Completed items posted successfully'),
+            error => console.error('Error:', error)
+          );
         }
       );
-    this.completedItems = this.agendaServ.getCompletedItems();
   }
 
   prompt(userMessage: string): Observable<string> {
     this.conversation['user'].push(userMessage);
+    console.log("sending", this.conversation);
     return this.http.post<{ response: string }>(this.serverEndpoint, { agendaItems: this.agendaItems, completedItems: this.completedItems, conversation: this.conversation }).pipe(
       map(resp => {
         this.conversation['assistant'].push(resp.response);
@@ -44,6 +56,24 @@ export class OpenaiService {
         return resp.response;
       })
     );
+  }
+
+  postAgendaItems(): Observable<string> {
+    return this.http.post(this.dataHandler, { agendaItems: this.agendaItems }, { responseType: 'text' })
+      .pipe(
+        map(response => {
+          return response;
+        })
+      );
+  }
+
+  postCompletedItems(): Observable<string> {
+    return this.http.post(this.dataHandler, { completedItems: this.completedItems }, { responseType: 'text' })
+      .pipe(
+        map(response => {
+          return response;
+        })
+      );
   }
 }
 

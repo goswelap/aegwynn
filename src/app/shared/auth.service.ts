@@ -3,7 +3,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
-import { environment } from '../environments/environment';
 
 import { User } from './user.model';
 
@@ -19,6 +18,9 @@ export interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+   private signupEndpoint = 'http://134.209.65.11:3000/signup';
+   private loginEndpoint = 'http://134.209.65.11:3000/login';
+
    private localId: string | null = null;
    user = new BehaviorSubject<User | null>(null);
    private tokenExpirationTimer: any;
@@ -28,7 +30,7 @@ export class AuthService {
    signup(email: string, password: string) {
       return this.http
          .post<AuthResponseData>(
-            'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
+            this.signupEndpoint,
             {
                email: email,
                password: password,
@@ -51,7 +53,7 @@ export class AuthService {
    login(email: string, password: string) {
       return this.http
          .post<AuthResponseData>(
-            'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey,
+            this.loginEndpoint,
             {
                email: email,
                password: password,
@@ -61,17 +63,17 @@ export class AuthService {
          .pipe(
             catchError(this.handleError),
             tap(resData => {
-                this.localId = resData.localId; // Set the _localId here
+               this.localId = resData.localId; // Set the _localId here
             }),
             tap(resData => {
-                this.handleAuthentication(
-                    resData.email,
-                    resData.localId,
-                    resData.idToken,
-                    +resData.expiresIn
-                );
+               this.handleAuthentication(
+                  resData.email,
+                  resData.localId,
+                  resData.idToken,
+                  +resData.expiresIn
+               );
             })
-        );
+         );
    }
 
    autoLogin() {
@@ -147,5 +149,5 @@ export class AuthService {
 
    getLocalId(): string | null {
       return this.localId;
-    }
+   }
 }

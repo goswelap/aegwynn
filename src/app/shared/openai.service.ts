@@ -10,7 +10,7 @@ import { AgendaService } from '../shared/agenda.service';
 @Injectable()
 export class OpenaiService {
   private serverEndpoint = 'http://134.209.65.11:3000/openai-prompt';
-  private dataHandler = 'http://134.209.65.11:3000/agenda-item-handler';
+  private dataEndpoint = 'http://134.209.65.11:3000/agenda-item-handler';
   conversation: { 'user': string[], 'assistant': string[] } = { 'user': [], 'assistant': [] };
   convo = new Subject<Conversation>();
   agendaSub!: Subscription;
@@ -59,7 +59,7 @@ export class OpenaiService {
   }
 
   postAgendaItems(): Observable<string> {
-    return this.http.post(this.dataHandler, { agendaItems: this.agendaItems }, { responseType: 'text' })
+    return this.http.post(this.dataEndpoint, { agendaItems: this.agendaItems }, { responseType: 'text' })
       .pipe(
         map(response => {
           return response;
@@ -68,7 +68,7 @@ export class OpenaiService {
   }
 
   postCompletedItems(): Observable<string> {
-    return this.http.post(this.dataHandler, { completedItems: this.completedItems }, { responseType: 'text' })
+    return this.http.post(this.dataEndpoint, { completedItems: this.completedItems }, { responseType: 'text' })
       .pipe(
         map(response => {
           return response;

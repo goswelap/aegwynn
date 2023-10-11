@@ -1,13 +1,13 @@
 <div class="assistant-container">
   <div *ngFor="let message of getDialogue()">
 
-    <div *ngIf="message.role === 'User'; else assistantMessage" class="user-message">
+    <div style="white-space:pre-wrap" *ngIf="message.role === 'User'; else assistantMessage" class="user-message">
       <p class="user-role">{{ message.role }}:</p>
       <p>{{ message.content }}</p>
     </div>
 
     <ng-template #assistantMessage>
-      <div class="assistant-message">
+      <div style="white-space:pre-wrap" class="assistant-message">
         <p class="assistant-role">{{ message.role }}:</p>
         <p>{{ message.content }}</p>
       </div>

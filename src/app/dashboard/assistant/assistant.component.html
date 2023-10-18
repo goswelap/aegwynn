@@ -1,5 +1,5 @@
 <div class="assistant-container">
-  <div *ngFor="let message of getDialogue()">
+  <div *ngFor="let message of getDialogue(); let last = last">
 
     <div style="white-space:pre-wrap" *ngIf="message.role === 'User'; else assistantMessage" class="user-message">
       <p class="user-role">{{ message.role }}:</p>
@@ -12,11 +12,12 @@
         <p>{{ message.content }}</p>
       </div>
     </ng-template>
+    <div #lastMessage *ngIf="last"></div>
   </div>
 </div>
 
 <div class="input-container">
-  <input type="text" [(ngModel)]="userMessage">
+  <input type="text" [(ngModel)]="userMessage" (keyup.enter)="send(); userMessage = ''">
   <!-- <div class="button-container"> -->
   <button class="btn btn-primary" (click)="send(); userMessage = ''"><i class="bi bi-send"></i></button>
   <!-- </div> -->

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild, AfterViewChecked } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { OnInit } from '@angular/core';
 import { OpenaiService } from '../../shared/openai.service';
@@ -11,8 +11,10 @@ import { ConversationService } from '../../shared/conversation.service';
   templateUrl: './assistant.component.html',
   styleUrls: ['./assistant.component.css']
 })
-export class AssistantComponent implements OnInit {
+export class AssistantComponent implements OnInit, AfterViewChecked {
   private conversationSub!: Subscription;
+  @ViewChild('lastMessage', { read: ElementRef }) private lastMessage!: ElementRef;
+  // @ViewChild('.assistant-container', { read: ElementRef }) private messageContainer!: ElementRef;
   conversation = new Conversation({ 'user': [], 'assistant': [] });
   userMessage = '';
   response = '';
@@ -30,6 +32,16 @@ export class AssistantComponent implements OnInit {
     // this.conversationSub = this.openaiService.convo.subscribe(convo => {
     //   this.conversation = convo;
     // });
+  }
+
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom(): void {
+    try {
+      this.lastMessage.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    } catch(err) { }
   }
 
   send() {

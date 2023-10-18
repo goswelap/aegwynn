@@ -16,7 +16,10 @@
   background-color: rgba(0, 0, 0, 0.6);
   position: relative;
   min-height: 5rem;
+  max-height: calc(100vh - 25vh);
+  overflow-y: auto;
 }
+
 
 .user-role {
   color: red;

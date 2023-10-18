@@ -48,7 +48,6 @@ export class OpenaiService {
 
   prompt(userMessage: string): Observable<string> {
     this.conversation['user'].push(userMessage);
-    console.log("sending", this.conversation);
     return this.http.post<{ response: string }>(this.serverEndpoint, { agendaItems: this.agendaItems, completedItems: this.completedItems, conversation: this.conversation }).pipe(
       map(resp => {
         this.conversation['assistant'].push(resp.response);

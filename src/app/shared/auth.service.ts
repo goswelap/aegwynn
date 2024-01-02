@@ -18,8 +18,8 @@ export interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-   private signupEndpoint = 'http://134.209.65.11:3000/signup';
-   private loginEndpoint = 'http://134.209.65.11:3000/login';
+   private signupEndpoint = 'http://127.0.0.1:3000/signup';
+   private loginEndpoint = 'http://127.0.0.1:3000/login';
 
    private localId: string | null = null;
    user = new BehaviorSubject<User | null>(null);

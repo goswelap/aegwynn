@@ -9,8 +9,8 @@ import { AgendaService } from '../shared/agenda.service';
 
 @Injectable()
 export class OpenaiService {
-  private serverEndpoint = 'http://134.209.65.11:3000/openai-prompt';
-  private dataEndpoint = 'http://134.209.65.11:3000/agenda-item-handler';
+  private serverEndpoint = 'http://127.0.0.1:3000/openai-prompt';
+  private dataEndpoint = 'http://127.0.0.1:3000/agenda-item-handler';
   conversation: { 'user': string[], 'assistant': string[] } = { 'user': [], 'assistant': [] };
   convo = new Subject<Conversation>();
   agendaSub!: Subscription;

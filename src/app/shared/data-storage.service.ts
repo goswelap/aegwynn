@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
-   private SERVER_URL = 'http://134.209.65.11:3000'; // Replace with your server's URL
+   private SERVER_URL = 'http://127.0.0.1:3000'; // Replace with your server's URL
 
    constructor(
       private http: HttpClient,

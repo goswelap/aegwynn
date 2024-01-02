@@ -41,16 +41,17 @@ export class AuthComponent {
          authObs = this.authService.signup(email, password);
       }
 
-      authObs.subscribe(
-         resData => {
-            this.isLoading = false;
-            this.router.navigate(['/dashboard']);
+      authObs.subscribe({
+         next: resData => {
+           this.isLoading = false;
+           this.router.navigate(['/dashboard']);
          },
-         errorMessage => {
-            this.error = errorMessage;
-            this.isLoading = false;
+         error: errorMessage => {
+           this.error = errorMessage;
+           this.isLoading = false;
          }
-      );
+       });
+
 
       form.reset();
    }
